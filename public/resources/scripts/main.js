@@ -135,9 +135,20 @@ function loadRoutes(city) {
 */
 function loadData(city) {
     var bus;
+    
+    
+    var path;
+    
+    if(city == "sf") {
+      path = "resources/data/" + city + "/bus-capacity.csv"
+    } else {
+      path = "resources/data/sf/bus-capacity.csv"
+      
+    }
+    
 
     /* TODO: Reduce size before downloading */
-    d3.csv("resources/data/sf/bus-capacity.csv", function(buses) {
+    d3.csv(path, function(buses) {
 
       var formatNumber = d3.format(",d");
         formatChange = d3.format("+,d");

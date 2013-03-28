@@ -1,5 +1,7 @@
+use Rack::Deflater
+
 use Rack::Static, 
-  :urls => ["/images", "/js", "/css"],
+  :urls => ["/images", "/resoruces", "/css", "/resources"],
   :root => "public"
 
 run lambda { |env|
