@@ -7,9 +7,9 @@ CITY_CENTER = {
 
 pink = "#E07C94";
 orange = "#E48E3B";
-green = "#B8CF81";
-blue = "#9EC5D9";
-yellow = "#FCD116"
+green = "#D0E7A2";
+blue = "#58D3D6";
+yellow = "#FBF500"
 
 DATE_FORMAT = d3.time.format("%b %Y");
 /* TODO: Allow any Day */
@@ -131,22 +131,26 @@ function loadRoutes(city) {
   });      
 }
 
-/* Typical run is .408 ms: 
-*/
+/* Typical run is .408 ms: */
 function loadData(city) {
-    var bus;
-    
-    
-    var path;
+    var bus, stop, path;
     
     if(city == "sf") {
       path = "resources/data/" + city + "/bus-capacity.csv"
     } else {
-      path = "resources/data/sf/bus-capacity.csv"
-      
+      path = "resources/data/" + city + "/trip_stats.csv"
     }
     
-
+    /* Clean up */
+    $("#range").find(".segment").remove()
+    
+    
+    d3.csv("resources/data/" + city + "/stops/stops.csv", function(stops){
+      all_stops = crossfilter(stops);
+      
+      stop = all_stops.dimension(function(d) { return d.stop_id });
+    });
+    
     /* TODO: Reduce size before downloading */
     d3.csv(path, function(buses) {
 
@@ -170,11 +174,11 @@ function loadData(city) {
       var all = bus.groupAll();
 
       // dim by trip
-      var trip = bus.dimension(function(d) { return d.trip_id });
-      var trips = trip.group();      
+      //var trip = bus.dimension(function(d) { return d.trip_id });
+      //var trips = trip.group();      
 
       var time = bus.dimension(function(d) { return d.time });
-      var times = time.group();
+      //var times = time.group();
 
       var min = new Date(DAY + " 06:00:00");
       var max = new Date(DAY + " 22:00:00");
@@ -227,6 +231,8 @@ function loadData(city) {
           /* add 30 minutes */
           var end = new Date(start.getTime() + (5  * 1000 * 60));
           
+          console.log(start, end)
+          
           filterByTime(start, end)
 
         }
@@ -235,17 +241,28 @@ function loadData(city) {
       $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
 
       function filterByTime(start, end) {
-
+        
+        var lat, lon;
+        var capacity, delay, speed; 
         time.filterRange([start, end]);
         /* 622.5 MS */
-        time.top(Infinity).forEach(function(p, i){
-            var lat = p.stop_lat;
-            var lon = p.stop_lon;
-            //var route = p.route
-
-            //map.addOverlay(lat, lon, 150 * p.capacity)
-            map.addOverlay(lat, lon, 150 * p.capacity)
-            //showRoute(route)
+        time.top(50).forEach(function(p, i){
+          if (city == "sf") {
+            lat = p.stop_lat;
+            lon = p.stop_lon;
+          } else {
+            
+            var current = stop.filterExact(p.stop_id)
+            lat = current.top(1)[0].stop_lat;
+            lon = current.top(1)[0].stop_lon;
+          }
+          
+          capacity = p.capacity * 60;
+          delay = p.delay;
+          speed = (1 - p.speedFromPrevStop / 30) * 100;
+          
+          map.addOverlay(lat, lon, capacity, yellow)
+          map.addOverlay(lat, lon, speed, blue)
         });
       }
       

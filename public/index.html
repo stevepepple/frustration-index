@@ -64,16 +64,19 @@
       
 			/* Listen for City Change */
 			citySelect = $("#city");
-			loadRoutes(citySelect.val());    
+      city = citySelect.val()
+			loadRoutes(city);    
 
 			citySelect.bind("change", function(){
-				var value = $(this).val();
-  
-				loadRoutes(value);
+				city = $(this).val();
   
 				/* Load the new city center */
 				google.maps.event.trigger(map, 'resize');
-				map.setCenter(CITY_CENTER[value]);
+				map.setCenter(CITY_CENTER[city]);
+        
+				loadRoutes(city);
+        loadData(city);
+        
 			});
 			loadData(city);
 		});

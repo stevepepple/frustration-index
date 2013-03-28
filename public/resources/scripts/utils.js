@@ -118,16 +118,16 @@ google.maps.Map.prototype.clearOverlays = function() {
   }
 }
 
-google.maps.Map.prototype.addOverlay = function(lat, lon, size) {
+google.maps.Map.prototype.addOverlay = function(lat, lon, size, color) {
   var coord = new google.maps.LatLng(lat, lon)
 
   var circleOptions = {
     clickable:true,
-    strokeColor: yellow,
+    strokeColor: color,
     strokeOpacity: 0.8,
-    strokeWeight: .8,
-    fillColor: yellow,
-    fillOpacity: 0.2,
+    strokeWeight: 0.0,
+    fillColor: color,
+    fillOpacity: 0.5,
     map: map,
     center: coord,
     radius: size,
@@ -136,7 +136,7 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size) {
 
   var circle = new google.maps.Circle(circleOptions);
   
-  var infowindow = new google.maps.InfoWindow();
+  //var infowindow = new google.maps.InfoWindow();
   
   /*
   google.maps.event.addListener(map, 'center_changed', function() {
@@ -145,7 +145,7 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size) {
         map.panTo(marker.getPosition());
       }, 3000);
   }); */
-  
+  /*
   google.maps.event.addListener(circle, 'click', function(ev){
     console.log(ev)
     
@@ -155,6 +155,7 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size) {
     infowindow.setPosition(circle.getCenter());
     infowindow.open(map);
   });
+  */
   
   overlays.push(circle);
 };
