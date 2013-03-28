@@ -1,0 +1,64 @@
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue"; background: #DDDDDD; }
+#map_canvas { height: 82%; width:95%; margin-left: auto; margin-right: auto; }
+
+#form, #range {
+	margin-top: 4px;
+	margin-left:auto;
+	margin-right:auto;
+	width:95%;
+}
+
+#range {
+  font-family: "Yanone Kaffeesatz" "Helvetica Neue";
+  margin-bottom:4px;
+  position:relative;
+  text-align:center;
+  
+}
+
+#slider {
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  position:relative;
+  z-index: 200;
+}
+
+#range .segment { float:left;
+  height:50px;
+  position:relative;
+  margin-top:-25px;
+  z-index: 100;
+}
+
+#range .tick { width:2%; height: 100%; background: #AAAAAA; position:relative; margin-left:50%; clear:none;}
+
+#range .label {
+  background: #DDDDDD;
+  bottom: 0;
+  color: #222222;
+  left: 50%;
+  margin-left: -18px;
+  position: absolute;
+}
+
+#currentTime { font-size: 30px; width:180px; }
+#day { color: #555555; width: 180px; }
+
+#currentTime div { float: left; padding:5px; padding-bottom:10px; padding-top:10px; }
+#currentTime div.hours,
+#currentTime div.minutes,
+#currentTime div.seconds { border:solid 1px #AAAAAA; color:#222222; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+
+.ui-slider {
+  background:#CCCCCC;
+  -moz-box-shadow: 0 0 5px #888 inset;
+  -webkit-box-shadow: 0 0 5px#888 inset;
+  box-shadow: 0 0 5px #888 inset;
+}
+
+.ui-slider-handle.ui-state-default {
+	border:solid 1px #777777;
+}

@@ -1,0 +1,169 @@
+route_short_name,direction,route_long_name
+D,Inbound,St-Julien-Gare / Vitam'Parc
+11,Inbound,Bout-du-Monde
+NE,Inbound,Gex-Le Turet
+NJ,Inbound,Chancy-Douane
+22,Outbound,Nations
+Z,Outbound,Gare Cornavin
+6,Outbound,Vernier-Village
+51,Outbound,C.O. Renard
+Z,Inbound,Bossy / Bois-Chatton
+35,Outbound,Beau-Séjour
+M4,Inbound,Molard
+22,Inbound,Tours-de-Carouge
+K,Inbound,Chancy-Douane / Pougny-Gare
+NO,Inbound,Bardonnex
+1,Outbound,Petit Bel-Air
+2,Outbound,Genève-Plage
+S,Inbound,Satigny-Gare
+NK,Inbound,Monniaz
+35,Inbound,Augustins
+A,Inbound,Gy-Eglise / Corsinge-Village
+TAC2,Outbound,ZI de Montréal
+19,null,null
+W,Inbound,Satigny-Gare
+8,Inbound,Veyrier-Douane/Veyrier-Tournettes
+21,Outbound,Cressy
+T,Outbound,La Plaine
+NS,Inbound,Hermance
+TAC3,Inbound,Prés des Plans_e
+3,Outbound,Gardiol
+TAC3,Outbound,Prés des Plans_i
+51,Inbound,Mervelet
+15,Outbound,Palettes
+TAC5,Inbound,Pas-de-l'Echelle Ecole / Étrembières Mairie
+15,Inbound,Nations
+84,Outbound,P+R Sous-Moulin
+5,Outbound,Thônex-Vallard-Dne
+34,Inbound,Chevrier
+34,Outbound,Veyrier-Tournettes
+8,Outbound,OMS
+54,Outbound,Satigny-Gare
+G,Inbound,Corsier-Village / Veigy
+TAC4,Inbound,
+47,Outbound,
+O,Inbound,Meyrin-Gravière
+81,Outbound,Rive
+41,Inbound,Petit-Veyrier
+E,Inbound,Hermance
+12,Inbound,Moillesulaz
+M2,Outbound,Pâquis
+46,Outbound,Bellins
+47,Inbound,Bernex-Saule
+3,Inbound,Crêts-de-Champel
+28,Outbound,Jardin-Botanique
+46,Inbound,Bardonnex
+54,Inbound,Gare ZIMEYSA
+TACD3,Inbound,Gaillard-Fossard
+12B,Outbound,Augustins
+15,null,Palettes
+X,Inbound,Dardagny / Russin
+A,Outbound,Rive
+NP,Inbound,Corsier-Village
+C,Inbound,Jussy-Meurets / Monniaz
+TAC1,Outbound,Lycée J. Monnet
+NO,Outbound,vide
+DN,Inbound,St-Julien-Gare
+NC,Inbound,La Plaine
+12,Outbound,Palettes
+41,Outbound,Tours-de-Carouge
+DN,Outbound,Valleiry Chef-Lieu
+85,Outbound,Vuillonnex
+31,Outbound,Puplinge-Marquis
+44,Outbound,Tours-de-Carouge
+G,Outbound,Rive
+36,Outbound,Vieille-Ville
+NJ,Outbound,Rive
+96,Inbound,Jussy-Meurets
+7,Inbound,Tours Lignon
+85,Inbound,Rte d'Epeisses
+Y,Outbound,Fernex-Mairie
+1,Inbound,Jardin-Botanique
+86,null,null
+28,Inbound,Parfumerie
+B,Outbound,Vésenaz-Eglise
+TACD3,Outbound,Pré des Plans
+NV,Inbound,Prés des Plans
+Gb,Inbound,P+R Veigy
+14,Outbound,P+R Bernex
+ND,Inbound,Gland
+Gb,Outbound,Rive
+14,Inbound,Meyrin-Gravière
+Y,Inbound,Val-Thoiry
+9,Inbound,Tours Lignon
+96,Outbound,Malagnou
+23,Inbound,Le Rolliet / ZIPLO
+45,Inbound,Troinex-Ville / Croix-de-Rozon-Dne
+X,Outbound,La Plaine / Chancy-Dne
+5,Inbound,Aeroport
+7,Outbound,Hôpital
+L,Outbound,Petite-Vendée
+TAC5,Outbound,Bonne Centre
+36,Inbound,Place de Neuve
+F,Outbound,Gare Cornavin
+V,Inbound,C.S. La Bécassiére
+M1,Inbound,Molard
+TAC4,Outbound,Bonne Centre
+81,Inbound,C.O. Bois-Caran
+NT,Inbound,Divonne-Gare
+W,Outbound,Choully
+2,Inbound,Onex-Cité
+45,Outbound,Tours-de-Carouge
+B,Inbound,Chevrens
+O,Outbound,Lycée International
+M3,Outbound,Genève-Plage
+23,Outbound,Aeroport
+31,Inbound,P+R Sous-Moulin
+44,Inbound,Croix-de-Rozon-Dne
+V,Outbound,Gare Cornavin
+NA,Inbound,Jean Monnet
+TAC2,Inbound,Gaillard-Fossard
+53,Outbound,Bouchet
+12,null,null
+32,Outbound,Sainte-Clotilde
+TAC1,Inbound,Chêne-Bourg Gare
+42,Outbound,Carouge
+33,Inbound,Chevrier
+86,Inbound,ZIPLO
+14,null,null
+Eb,Inbound,Hermance
+33,Outbound,Rive
+21,Inbound,Gare Eaux-Vives
+Eb,Outbound,Rive
+S,Outbound,Pré-Lauret
+4,Outbound,Bel-Air
+T,Inbound,P+R Challex-La Halle
+E,Outbound,Rive
+C,Outbound,P+R Sous-Moulin / Malagnou
+NM,Inbound,Avusy
+53,Inbound,Machéry
+12B,Inbound,Chêne-Bourg Gare
+VB,Outbound,
+VB,Inbound,C.S. La Bécassiére
+84,Inbound,Petit-Bel-Air
+19,Inbound,Onex-Cité
+D,Outbound,Bel-Air
+19,Outbound,Vernier-Village
+NT,null,null
+K,Outbound,Petite-Vendée
+10,Outbound,Aeroport
+32,Inbound,Plainpalais
+43,Inbound,Loëx-Hôpital
+57,Inbound,Gare Vernier-Meyrin
+41S,Inbound,Petit-Veyrier
+4,Inbound,P+R Perly
+L,Inbound,Avusy
+41S,Outbound,Tours-de-Carouge
+F,Inbound,Ferney-Mairie / Gex-ZAC
+NS,Outbound,Chantepoulet
+11,Outbound,Jardin-Botanique
+NA,Outbound,Rive
+6,Inbound,Genève-Plage
+10,Inbound,Rive
+9,Outbound,Petit Bel-Air
+86,Outbound,Nations
+80,Inbound,C.O. Bois-Caran
+43,Outbound,Stade de Genève
+42,Inbound,
+80,Outbound,Rive
+57,Outbound,Aeroport
