@@ -231,10 +231,12 @@ function loadData(city) {
           var val = ui.value;
           
           $("#currentTime").html( getDateTicker(new Date(min.getTime() + (val * 1000 * 60)), true));
+          
+          map.clearOverlays();
+          
         },
         change: function( event, ui ) {
 
-          map.clearOverlays();
 
           var val = ui.value;
           
