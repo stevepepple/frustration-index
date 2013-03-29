@@ -23,6 +23,39 @@ d3.csv("sf-route-1-schedule-real.csv", function(data) {
 });
 */
 
+//var current_stop = by_stop.groupAll().value()
+
+var current_stop = by_stop.filterExact(p.stop_id).groupAll().reduce(reduceAdd, reduceRemove, reduceInitial);
+console.log(by_stop)
+console.log(current_stop.value())
+
+function reduceAdd(p, v, c) {
+  ++p.count;
+  console.log(p.time, p.count)
+  
+  //p.capacity += p.capacity;
+  return p;
+}
+
+function reduceRemove(p, v) {
+  --p.count;
+  p.total -= v.total;
+  return p;
+}
+
+function reduceInitial() {
+  return {stop_id : p.stop_id, time : p.time, capacity: p.capacity, count: 0 };
+}
+
+//current_stop.group().reduceCount()
+
+/*
+current_stop.group(function(p) {
+  console.log(p)
+});
+*/
+
+
 function showRoute(route) {
   if (city == "sf") { var routeName = window.sf.abbr[0][route]; }
   

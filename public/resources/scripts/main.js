@@ -159,7 +159,7 @@ function loadData(city) {
         formatDate = d3.time.format("%B %d, %Y");
         formatTime = d3.time.format("H:%M:%S");
 
-      var nestByDate = d3.nest().key(function(d) { return d3.time.day(d.date); });
+      //var nestByDate = d3.nest().key(function(d) { return d3.time.day(d.date); });
 
       /* ~ 60ms; 16ms w/o time func */
       buses.forEach(function(d, i) {
@@ -176,9 +176,20 @@ function loadData(city) {
       // dim by trip
       //var trip = bus.dimension(function(d) { return d.trip_id });
       //var trips = trip.group();      
-
       var time = bus.dimension(function(d) { return d.time });
-      //var times = time.group();
+      var by_stop = bus.dimension(function(d) { return d.stop_id });
+      
+      var total_stops = by_stop.groupAll().reduceCount().value();
+      
+      console.log(total_stops)
+      
+      var times = time.group();
+      
+      function reduceInitial(p, v) {
+        console.log("reducing...")
+        console.log(p, v)
+        return 0;
+      };
 
       var min = new Date(DAY + " 06:00:00");
       var max = new Date(DAY + " 22:00:00");
@@ -231,8 +242,6 @@ function loadData(city) {
           /* add 30 minutes */
           var end = new Date(start.getTime() + (5  * 1000 * 60));
           
-          console.log(start, end)
-          
           filterByTime(start, end)
 
         }
@@ -246,7 +255,27 @@ function loadData(city) {
         var capacity, delay, speed; 
         time.filterRange([start, end]);
         /* 622.5 MS */
-        time.top(50).forEach(function(p, i){
+        //console.log(time)
+        var num_stops = by_stop.groupAll().reduceCount().value();
+        console.log("Number of stops at this time: " + num_stops)
+        
+        /* TODO: Important! show all */
+        var bottom = num_stops - 200;
+        
+        by_stop.top(200).forEach(function(p, i){
+          plotFrustration(p, i)
+        });
+        
+        /*
+        by_stop.bottom(bottom).forEach(function(p, i){
+          plotFrustration(p, i)
+        });
+        */
+        
+        function plotFrustration(p, i) {
+          //by_stop.filterExact(p.stop_id);
+          //unique_stops = by_stop.top(Infinity).length
+          
           if (city == "sf") {
             lat = p.stop_lat;
             lon = p.stop_lon;
@@ -263,7 +292,8 @@ function loadData(city) {
           
           map.addOverlay(lat, lon, capacity, yellow)
           map.addOverlay(lat, lon, speed, blue)
-        });
+        }
+        
       }
       
       /*
