@@ -22,50 +22,61 @@
   <link rel="stylesheet" href="resources/styles/styles.css" />
  
 </head>
-<body onload="initialize()">
-  
-    <!-- python -m SimpleHTTPServer -->
+<body onload="initialize();">
     
+    <div id="header">
+      <div id="about">* about</div>
+      <div id="logo"></div>
+    </div>
     <!-- GUI Selector -->
     <div id="form">
-      <div class="controls">
-        <select id="city">
-          <option value="sf">San Francisco</option>
-          <option value="geneva">Geneva</option>
-          <option value="zurich">Zurich</option>
-        </select>
-      </div>
-      
-      <!--select id="route">
-        <option>Select a route ...</option>
-      </select-->
-      <!--strong>Or</strong>
-      <select id="stops">
-        <option>Select a stop ...</option>
-      </select>
-      <select id="paths">
-        <option>Select a path ...</option>
-      </select-->
-      <!--button id="refresh">Refresh</button-->
-      <div id="info"></div>
     </div>
     <div id="viz"></div>
 
     <div id="range">
-      <div id="currentTime"></div>
-      <div id="day">Monday, October 1st,  2012</div>
+      <div id="legend">
+        <div class="factor delay">Delay</div>
+        <div class="factor capacity">Capacity</div>
+        <div class="factor speed">Speed</div>
+      </div>
+      
+      <div class="date">
+        <div id="currentTime"></div>
+        <div id="day">Monday, October 1st,  2012</div>
+      </div>
+      <div class="controls">
+        <select id="city">
+          <option value="geneva">Geneva</option>
+          <option value="sf">San Francisco</option>
+          <option value="zurich">Zurich</option>
+        </select>
+      </div>
+      
       <div id="slider"></div>
     </div>
 
-    
+    <!-- Google Map -->
     <div id="map_canvas" style="width:600;"></div>
+
+    <!-- Show while fetching the CSV data -->
+    <div id="loader">
+      <div class="message"></div>
+      <div class="animation">
+        <div class="bubblingG"><span id="bubblingG_1"></span>
+        <span id="bubblingG_2"></span>
+        <span id="bubblingG_3"></span>
+      </div>
+    </div>
+
+    <div id="info"></div>
+
     <script>
+    
 		$(document).ready(function() {
       
 			/* Listen for City Change */
 			citySelect = $("#city");
       city = citySelect.val()
-			loadRoutes(city);    
 
 			citySelect.bind("change", function(){
 				city = $(this).val();
@@ -76,9 +87,12 @@
         
 				loadRoutes(city);
         loadData(city);
-        
 			});
-			loadData(city);
+			
+      loadRoutes(city);    
+      // TODO: sleep until I get the map callback right 
+      loadData(city)        
+
 		});
 
     </script>
