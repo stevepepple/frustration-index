@@ -9,7 +9,12 @@ pink = "#E07C94";
 orange = "#E48E3B";
 green = "#D0E7A2";
 blue = "#58D3D6";
-yellow = "#FBF500"
+yellow = "#FBF500";
+
+dotColor = { "capacity" : blue, "speed" : pink, "delay" : yellow }
+/* A, B, C, D, E, F */
+dotGrade = { 1: 10, 2 : 60, 3 : 80, 4: 120, 5: 180, 6 : 260 }
+
 
 DATE_FORMAT = d3.time.format("%b %Y");
 /* TODO: Allow any Day */
@@ -84,9 +89,8 @@ function initialize() {
 	map.setOptions({styles: open});
   google.maps.event.addDomListener(window, 'load', initialize);
   
-  
-	loadRoutes(citySelect.val());    
-  
+	loadRoutes(city); 
+
 }    
     
 /* Populate the List of Routes */
@@ -135,6 +139,8 @@ function loadRoutes(city) {
 function loadData(city) {
     var bus, stop, path;
     
+    $("#loader .message").text("Loading data for " + city.toTitleCase() + ". This may take a moment.");
+    
     if(city == "sf") {
       path = "resources/data/" + city + "/bus-capacity.csv"
     } else {
@@ -144,7 +150,6 @@ function loadData(city) {
     /* Clean up */
     $("#range").find(".segment").remove()
     
-    
     d3.csv("resources/data/" + city + "/stops/stops.csv", function(stops){
       all_stops = crossfilter(stops);
       
@@ -153,6 +158,10 @@ function loadData(city) {
     
     /* TODO: Reduce size before downloading */
     d3.csv(path, function(buses) {
+
+      /* Show the map */
+      $("#map_canvas").show();
+      $("#loader").hide();
 
       var formatNumber = d3.format(",d");
         formatChange = d3.format("+,d");
@@ -180,16 +189,7 @@ function loadData(city) {
       var by_stop = bus.dimension(function(d) { return d.stop_id });
       
       var total_stops = by_stop.groupAll().reduceCount().value();
-      
-      console.log(total_stops)
-      
       var times = time.group();
-      
-      function reduceInitial(p, v) {
-        console.log("reducing...")
-        console.log(p, v)
-        return 0;
-      };
 
       var min = new Date(DAY + " 06:00:00");
       var max = new Date(DAY + " 22:00:00");
@@ -237,7 +237,6 @@ function loadData(city) {
         },
         change: function( event, ui ) {
 
-
           var val = ui.value;
           
           var start = new Date(min.getTime() + (val * 1000 * 60));
@@ -250,61 +249,125 @@ function loadData(city) {
       });
       
       $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
-
+      
+      /* Select a subset of all data to be graphed */
       function filterByTime(start, end) {
         
         var lat, lon;
-        var capacity, delay, speed; 
+        var capacity, delay, speed;
         time.filterRange([start, end]);
-        /* 622.5 MS */
-        //console.log(time)
-        var num_stops = by_stop.groupAll().reduceCount().value();
-        console.log("Number of stops at this time: " + num_stops)
         
-        /* TODO: Important! show all */
-        var bottom = num_stops - 200;
+        var num_stops = by_stop.groupAll().reduceCount();
         
-        by_stop.top(200).forEach(function(p, i){
-          plotFrustration(p, i)
-        });
+        /* How many unique stops are there in this time range */
+        var num_stops_count = by_stop.group().reduceCount().all();
+        countByStop = {}
         
-        /*
-        by_stop.bottom(bottom).forEach(function(p, i){
-          plotFrustration(p, i)
-        });
-        */
+        Array.prototype.slice.call(num_stops_count).forEach(function(d) { countByStop[d.key] = d.value; })
+
+        /* Store the chart data first */
+        chart = {};
         
-        function plotFrustration(p, i) {
-          //by_stop.filterExact(p.stop_id);
-          //unique_stops = by_stop.top(Infinity).length
+        /* Not Pretty, but it seem like an effience way to reduce and sort in the same loop */
+        by_stop.top(500).forEach(function(p, i){
+
+          var cap_grade, delay_grade, speed_grade;
+
+          var size = countByStop[p.stop_id];
           
-          if (city == "sf") {
-            lat = p.stop_lat;
-            lon = p.stop_lon;
-          } else {
-            
-            var current = stop.filterExact(p.stop_id)
-            lat = current.top(1)[0].stop_lat;
-            lon = current.top(1)[0].stop_lon;
+          if (p.cap_grade == "" && p.delay_grade == "" && p.speed_grade == "") {
+            return true;
           }
           
-          capacity = p.capacity * 60;
-          delay = p.delay;
-          speed = (1 - p.speedFromPrevStop / 30) * 100;
+          if (p.cap_grade == "undefined" && p.delay_grade == "undefined" && p.speed_grade == "undefined") {
+            return true;
+          }
           
-          map.addOverlay(lat, lon, capacity, yellow)
-          map.addOverlay(lat, lon, speed, blue)
+          var grades = {};
+
+          var dup_trips = {};
+          if (size > 1) {
+            /* Just take the simple mean of the grades and round it up 
+             * TODO: use the raw value
+             */
+            cap_grade = sum_factor(p.cap_grade / size);
+            delay_grade = sum_factor(p.delay_grade / size);
+            speed_grade = sum_factor(p.speed_grade / size);
+
+            /* If a duplicate reduce by the average */
+            if (containsObject(p.stop_id, dup_trips) == false) {
+              dup_trips[p.stop_id] = {};
+              dup_trips[p.stop_id]["capacity"] = cap_grade;
+              dup_trips[p.stop_id]["delay"] = delay_grade;
+              dup_trips[p.stop_id]["speed"] = speed_grade;
+            } else {
+              var capacity = dup_trips[p.stop_id]["capacity"] += cap_grade;
+              var delay = dup_trips[p.stop_id]["delay"] += delay_grade;
+              var speed = dup_trips[p.stop_id]["speed"] += speed_grade;
+            }
+            
+            grades = sortGrades(capacity, delay, speed);
+                                    
+          } else {
+            cap_grade = get_grade(p.cap_grade);
+            delay_grade = get_grade(p.delay_grade);
+            speed_grade = get_grade(p.speed_grade);
+            
+            grades = sortGrades(cap_grade, delay_grade, speed_grade);
+            
+          }
+           
+          chart[p.stop_id] = {}
+          chart[p.stop_id]["grade"] = grades
+          
+        });
+        
+        function sortGrades(capacity, delay, speed) {
+          var object = {}
+          /* Do a simple array sort by the grade */
+          var sortable = new Array();
+          sortable.push(["capacity", capacity]);
+          sortable.push(["delay", delay]);
+          sortable.push(["speed", speed]);
+          sortable.sort(function(a, b) {return a[1] - b[1]})
+
+          /* Then reverse the sort and pack to an object */
+          for (var i = sortable.length - 1; i >= 0; i--){
+            var factor = sortable[i][0];
+            var value = sortable[i][1]
+            object[factor] = value;
+          };
+          
+          return object; 
         }
         
+        /* Now go ahead and chart everything */
+        $.each(chart, function(i, value) {
+          var stop_id = i;
+          
+          for (factor in value.grade) {
+            plotFrustration(stop_id, value.grade[factor], factor);            
+          }
+        });
+        
+        function plotFrustration(key, value, type) {
+          //by_stop.filterExact(p.stop_id);
+          //unique_stops = by_stop.top(Infinity).length
+          var current = stop.filterExact(key)
+          
+          if (current.top(1).length > 0) {
+            lat = current.top(1)[0].stop_lat;
+            lon = current.top(1)[0].stop_lon;   
+            
+            if (typeof map != "undefined") {
+              map.addOverlay(lat, lon, dotGrade[value], dotColor[type])
+            }
+            
+          } else {
+            //console.log("stop does not exist: " + key)
+          }
+        }
       }
-      
-      /*
-      trip.filter("4116537-05");
-
-      trip.top(10).forEach(function(p, i){
-        console.log(p, i)
-      })
-      */
 
     });
 }

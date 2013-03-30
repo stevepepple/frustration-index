@@ -52,6 +52,40 @@ function filterJSON(json, key, value) {
   return result;
 }
 
+function get_grade(factor) {
+  var num = parseInt(factor);
+  if (isNaN(num) == false ) {
+    return num;
+  } else {
+    return 0;
+  }
+}
+
+function sum_factor(factor, size) {
+  if (factor == null || factor == "undefined" || isNaN(factor)) {
+    return 0;
+  } else {
+    return (Math.round(factor / size))
+  }
+}
+
+function containsObject(obj, list) {
+  var i;
+  for (i = 0; i < list.length; i++) {
+      if (list[i] === obj) {
+          return true;
+      }
+  }
+  return false;
+}
+
+function toObject(arr) {
+  var rv = {};
+  for (var i = 0; i < arr.length; ++i)
+    rv[i] = arr[i];
+  return rv;
+}
+
 function chartJSON() {
   color = "#EEEEEE"
 
@@ -67,7 +101,7 @@ function chartJSON() {
           
         if (city == "geneva" || city == "sf") {
           window.paths[i][j].strokeColor = color;
-          window.paths[i][j].strokeWeight = .5;
+          window.paths[i][j].strokeWeight = .4;
           window.paths[i][j].setMap(map);
 
           window.paths[i][j].setMap(map);
@@ -124,10 +158,10 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size, color) {
   var circleOptions = {
     clickable:true,
     strokeColor: color,
-    strokeOpacity: 0.8,
+    strokeOpacity: 0.0,
     strokeWeight: 0.0,
     fillColor: color,
-    fillOpacity: 0.5,
+    fillOpacity: 1.0,
     map: map,
     center: coord,
     radius: size,
@@ -160,3 +194,11 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size, color) {
   overlays.push(circle);
 };
 
+String.prototype.toTitleCase = function () {
+  var string = "";
+  var words = this.split(" ");
+  for(keyvar in words) {
+    string += ' ' + words[keyvar].substr(0,1).toUpperCase() + words[keyvar].substr(1,words[keyvar].length);
+  }
+  return string;
+}
