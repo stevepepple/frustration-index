@@ -5,6 +5,12 @@ CITY_CENTER = {
   zurich : new google.maps.LatLng(47.3690, 8.5380)
 }
 
+FACTORS = {
+  sf : { "factors" : "factors", "capacity" : "capacity", "delay" : "delay", "speed" : "speed" },
+  geneva: { "factors" : "facteurs", "capacity" : "capacité", "delay" : "retard", "speed" : "Vitesse" },
+  zurich : { "factors" : "Faktors", "capacity" : "Kapazität", "delay" : "Spätigkeit", "speed" : "Schnelligkeit" }
+}
+
 pink = "#E07C94";
 orange = "#E48E3B";
 green = "#D0E7A2";
@@ -13,7 +19,9 @@ yellow = "#FBF500";
 
 dotColor = { "capacity" : blue, "speed" : pink, "delay" : yellow }
 /* A, B, C, D, E, F */
-dotGrade = { 1: 10, 2 : 60, 3 : 80, 4: 120, 5: 180, 6 : 260 }
+dotGrade = { 0 : "NA", 1: "A", 2 : "B", 3 : "C", 4: "D", 5: "E", 6 : "F" }
+dotSize = { 1: 20, 2 : 60, 3 : 80, 4: 120, 5: 180, 6 : 260 }
+
 
 
 DATE_FORMAT = d3.time.format("%b %Y");
@@ -91,8 +99,11 @@ function initialize() {
   google.maps.event.addDomListener(window, 'load', initialize);
   
 	loadRoutes(city); 
-
 }    
+
+function doTranslation() {
+  
+}
     
 /* Populate the List of Routes */
 var routeSelect = $("#route");
@@ -140,6 +151,8 @@ function loadRoutes(city) {
 function loadData(city) {
     var bus, stop, path;
     
+    city = city
+    
     $("#loader .message").text("Loading data for " + city.toTitleCase() + ". This may take a moment.");
     
     path = "resources/data/" + city + "/trip_stats.csv"
@@ -157,7 +170,7 @@ function loadData(city) {
     d3.csv(path, function(buses) {
 
       /* Show the map */
-      $("#map_canvas").show();
+      $('#range').show();
       $("#loader").hide();
 
       var formatNumber = d3.format(",d");
@@ -229,7 +242,9 @@ function loadData(city) {
           
           $("#currentTime").html( getDateTicker(new Date(min.getTime() + (val * 1000 * 60)), true));
           
+          /* Clear on slide */
           map.clearOverlays();
+          $(".mapTooltip").remove();
           
         },
         change: function( event, ui ) {
@@ -243,6 +258,10 @@ function loadData(city) {
           filterByTime(start, end)
 
         }
+      });
+      
+      $("#range").bind("click", function(){
+        $(".mapTooltip").remove();
       });
       
       $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
@@ -356,7 +375,7 @@ function loadData(city) {
             lon = current.top(1)[0].stop_lon;   
             
             if (typeof map != "undefined") {
-              map.addOverlay(lat, lon, dotGrade[value], dotColor[type], key)
+              map.addOverlay(lat, lon, dotSize[value], dotColor[type], key)
             }
             
           } else {

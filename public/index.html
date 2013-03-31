@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   
   <link href="resources/scripts/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
   
@@ -32,6 +33,17 @@
     <div id="form">
     </div>
     <div id="viz"></div>
+    
+    <!-- Show while fetching the CSV data -->
+    <!--div id="loader">
+      <div class="message"></div>
+      <div class="animation">
+        <div class="bubblingG"><span id="bubblingG_1"></span>
+        <span id="bubblingG_2"></span>
+        <span id="bubblingG_3"></span>
+      </div>
+    </div-->
+    
 
     <div id="range">
       <div id="legend">
@@ -58,16 +70,6 @@
     <!-- Google Map -->
     <div id="map_canvas" style="width:600;"></div>
 
-    <!-- Show while fetching the CSV data -->
-    <div id="loader">
-      <div class="message"></div>
-      <div class="animation">
-        <div class="bubblingG"><span id="bubblingG_1"></span>
-        <span id="bubblingG_2"></span>
-        <span id="bubblingG_3"></span>
-      </div>
-    </div>
-
     <div id="info"></div>
 
     <script>
@@ -76,7 +78,10 @@
       
 			/* Listen for City Change */
 			citySelect = $("#city");
+      
+      citySelect.val("sf")
       city = citySelect.val()
+      
 
 			citySelect.bind("change", function(){
 				city = $(this).val();
@@ -89,9 +94,10 @@
         loadData(city);
 			});
 			
+      doTranslation();
       loadRoutes(city);    
       // TODO: sleep until I get the map callback right 
-      loadData(city)        
+      loadData(city) ;       
 
 		});
 
