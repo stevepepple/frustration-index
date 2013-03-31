@@ -156,8 +156,9 @@ function loadData(city) {
     var bus, stop, path;
     
     city = city
-    
-    $("#loader .message").text("Loading data for " + city.toTitleCase() + ". This may take a moment.");
+    $("#range").hide();
+    $("#loader").show();
+    $("#loader .message").text("Loading data for " + $("#city option:selected").text() + ". This may take a moment.");
     
     path = "resources/data/" + city + "/trip_stats.csv"
     
