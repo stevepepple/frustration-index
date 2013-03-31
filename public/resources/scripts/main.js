@@ -103,6 +103,10 @@ function initialize() {
 
 function doTranslation() {
   
+  $(".factor.delay").text(FACTORS[city].delay)
+  $(".factor.capacity").text(FACTORS[city].capacity)
+  $(".factor.speed").text(FACTORS[city].speed)
+
 }
     
 /* Populate the List of Routes */
