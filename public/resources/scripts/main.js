@@ -19,7 +19,7 @@ yellow = "#FBF500";
 
 dotColor = { "capacity" : blue, "speed" : pink, "delay" : yellow }
 /* A, B, C, D, E, F */
-dotGrade = { 0 : "NA", 1: "A", 2 : "B", 3 : "C", 4: "D", 5: "E", 6 : "F" }
+dotGrade = { 0 : "NA", 1: "A", 2 : "B", 3 : "C", 4: "D", 5: "E", 6 : "F", "NA" : "NA" }
 dotSize = { 1: 20, 2 : 60, 3 : 80, 4: 120, 5: 180, 6 : 260 }
 
 
@@ -98,14 +98,18 @@ function initialize() {
 	map.setOptions({styles: open});
   google.maps.event.addDomListener(window, 'load', initialize);
   
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+    $(".mapTooltip").remove();
+  });
+  
 	loadRoutes(city); 
 }    
 
 function doTranslation() {
   
-  $(".factor.delay").text(FACTORS[city].delay)
-  $(".factor.capacity").text(FACTORS[city].capacity)
-  $(".factor.speed").text(FACTORS[city].speed)
+  $(".factor.delay").text(FACTORS[city].delay.toTitleCase())
+  $(".factor.capacity").text(FACTORS[city].capacity.toTitleCase())
+  $(".factor.speed").text(FACTORS[city].speed.toTitleCase())
 
 }
     
@@ -232,8 +236,8 @@ function loadData(city) {
         $("#range").append(segment);
       };
       
-      /* Trigger first Filter */
-      filterByTime(min, new Date(min.getTime() + (1 * (60 + 5))));
+      /* Trigger first Filter 
+      filterByTime(min, new Date(min.getTime() + (1 * (60 + 5)))); */
       $("#currentTime").html( getDateTicker(min, true) );
 
       $("#slider").slider({

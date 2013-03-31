@@ -192,15 +192,19 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size, color, key) {
     var delay = chart[stop_id].grade.delay;
     var speed = chart[stop_id].grade.speed;
     
-    var total = Math.round((capacity + delay + speed) / 3); 
+    if (capacity == 0 || delay == 0 || speed == 0) {
+      total = "NA";
+    } else {
+      var total = Math.round((capacity + delay + speed) / 3); 
+    }
     
     var tooltip = $("<div class='mapTooltip'>" +
       "Stop: " + circle.title + "</br>" +
       "Frustration distribution: </br>" +
-      "<div class='totalLevel tile'><div class='label'>" + FACTORS[city].factors + "</div><div class='icon grade" + dotGrade[total] + "'></div><div class='grade'> LOS " + dotGrade[total] + "</div></div>" + 
-      "<div class='delay tile grade'><div class='label'>" + FACTORS[city].delay + "</div><div class='icon grade" + dotGrade[delay] + "'></div><div class='grade'> LOS " + dotGrade[delay] + "</div></div>" + 
-      "<div class='capacity tile grade'><div class='label'>" + FACTORS[city].capacity + "</div><div class='icon grade" + dotGrade[capacity] + "'></div><div class='grade'> LOS " + dotGrade[capacity] + "</div></div>" + 
-      "<div class='speed tile grade'><div class='label'>" + FACTORS[city].speed + "</div><div class='icon grade" + dotGrade[speed] + "'></div><div class='grade'> LOS " + dotGrade[speed] + "</div></div>" + 
+      "<div class='totalLevel tile " + dotGrade[total] + "'><div class='label'>" + FACTORS[city].factors + "</div><div class='icon grade" + dotGrade[total] + "'></div><div class='grade'> LOS " + dotGrade[total] + "</div></div>" + 
+      "<div class='delay tile grade " + dotGrade[delay] + "'><div class='label'>" + FACTORS[city].delay + "</div><div class='icon grade" + dotGrade[delay] + "'></div><div class='grade'> LOS " + dotGrade[delay] + "</div></div>" + 
+      "<div class='capacity tile grade " + dotGrade[capacity] + "'><div class='label'>" + FACTORS[city].capacity + "</div><div class='icon grade" + dotGrade[capacity] + "'></div><div class='grade'> LOS " + dotGrade[capacity] + "</div></div>" + 
+      "<div class='speed tile grade " + dotGrade[speed] + "'><div class='label'>" + FACTORS[city].speed + "</div><div class='icon grade" + dotGrade[speed] + "'></div><div class='grade'> LOS " + dotGrade[speed] + "</div></div>" + 
     "</div>");
     
     $("#map_canvas").before(tooltip)

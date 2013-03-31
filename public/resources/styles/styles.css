@@ -142,7 +142,7 @@ div.controls { float:left; height:90px; width:250px; }
 .mapTooltip .tile.capacity { background: #58D3D6; }
 .mapTooltip .tile.speed { background: #E07C94; }
 
-.mapTooltip .tile .label {
+.mapTooltip .label {
   background:none;
   border-bottom: 1px solid #000000;
   border-radius: 0px;
@@ -165,6 +165,17 @@ div.controls { float:left; height:90px; width:250px; }
 .mapTooltip .tile .gradeE { background: url('../../images/white/LOS-E.gif') center center no-repeat; }
 .mapTooltip .tile .gradeF { background: url('../../images/white/LOS-F.gif') center center no-repeat; }
 
+.mapTooltip .totalLevel .gradeA { background: url('../../images/black/LOS-A.gif') center center no-repeat; }
+.mapTooltip .totalLevel .gradeB { background: url('../../images/black/LOS-B.gif') center center no-repeat; }
+.mapTooltip .totalLevel .gradeC { background: url('../../images/black/LOS-C.gif') center center no-repeat; }
+.mapTooltip .totalLevel .gradeD { background: url('../../images/black/LOS-D.gif') center center no-repeat; }
+.mapTooltip .totalLevel .gradeE { background: url('../../images/black/LOS-E.gif') center center no-repeat; }
+.mapTooltip .totalLevel .gradeF { background: url('../../images/black/LOS-F.gif') center center no-repeat; }
+
+.mapTooltip .NA { background: #CCCCCC !important; color: #999999; }
+.mapTooltip .NA label { color: #999999; }
+
+
 .ui-slider { background:#CCCCCC; clear:both; display:block; }
 
 .ui-slider-handle.ui-state-default {
@@ -174,135 +185,129 @@ div.controls { float:left; height:90px; width:250px; }
 
 .animation {
   width:150px;
-  margin-top:30px;
+  height: 80px;
+  margin-top:20px;
   margin-left:auto;
   margin-right:auto;
 }
 
-.bubblingG span {
-display: inline-block;
-vertical-align: middle;
-width: 13px;
-height: 13px;
-margin: 31px auto;
-background: #FBF500;
--moz-border-radius: 63px;
--moz-animation: bubblingG 1.3s infinite alternate;
--webkit-border-radius: 63px;
--webkit-animation: bubblingG 1.3s infinite alternate;
--ms-border-radius: 63px;
--ms-animation: bubblingG 1.3s infinite alternate;
--o-border-radius: 63px;
--o-animation: bubblingG 1.3s infinite alternate;
-border-radius: 63px;
-animation: bubblingG 1.3s infinite alternate;
+#circleG{
+width:116.66666666666667px;
 }
 
-#bubblingG_1 {
--moz-animation-delay: 0s;
--webkit-animation-delay: 0s;
--ms-animation-delay: 0s;
--o-animation-delay: 0s;
-animation-delay: 0s;
+.circleG{
+background-color:#FFFFFF;
+float:left;
+height:25px;
+margin-left:13px;
+width:25px;
+-moz-animation-name:bounce_circleG;
+-moz-animation-duration:1.9500000000000002s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-direction:linear;
+-moz-border-radius:17px;
+-webkit-animation-name:bounce_circleG;
+-webkit-animation-duration:1.9500000000000002s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:linear;
+-webkit-border-radius:17px;
+-ms-animation-name:bounce_circleG;
+-ms-animation-duration:1.9500000000000002s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-direction:linear;
+-ms-border-radius:17px;
+-o-animation-name:bounce_circleG;
+-o-animation-duration:1.9500000000000002s;
+-o-animation-iteration-count:infinite;
+-o-animation-direction:linear;
+-o-border-radius:17px;
+animation-name:bounce_circleG;
+animation-duration:1.9500000000000002s;
+animation-iteration-count:infinite;
+animation-direction:linear;
+border-radius:17px;
 }
 
-#bubblingG_2 {
--moz-animation-delay: 0.39s;
--webkit-animation-delay: 0.39s;
--ms-animation-delay: 0.39s;
--o-animation-delay: 0.39s;
-animation-delay: 0.39s;
+#circleG_1{
+-moz-animation-delay:0.39s;
+-webkit-animation-delay:0.39s;
+-ms-animation-delay:0.39s;
+-o-animation-delay:0.39s;
+animation-delay:0.39s;
 }
 
-#bubblingG_3 {
--moz-animation-delay: 0.78s;
--webkit-animation-delay: 0.78s;
--ms-animation-delay: 0.78s;
--o-animation-delay: 0.78s;
-animation-delay: 0.78s;
+#circleG_2{
+-moz-animation-delay:0.9099999999999999s;
+-webkit-animation-delay:0.9099999999999999s;
+-ms-animation-delay:0.9099999999999999s;
+-o-animation-delay:0.9099999999999999s;
+animation-delay:0.9099999999999999s;
 }
 
-@-moz-keyframes bubblingG {
-0% {
-width: 13px;
-height: 13px;
-background-color:#FBF500;
--moz-transform: translateY(0);
+#circleG_3{
+-moz-animation-delay:1.1700000000000002s;
+-webkit-animation-delay:1.1700000000000002s;
+-ms-animation-delay:1.1700000000000002s;
+-o-animation-delay:1.1700000000000002s;
+animation-delay:1.1700000000000002s;
 }
 
-100% {
-width: 30px;
-height: 30px;
-background-color:#58D3D6;
--moz-transform: translateY(-26px);
+@-moz-keyframes bounce_circleG{
+0%{
 }
 
-}
+50%{
+background-color:#000000}
 
-@-webkit-keyframes bubblingG {
-0% {
-width: 13px;
-height: 13px;
-background-color:#FBF500;
--webkit-transform: translateY(0);
-}
-
-100% {
-width: 30px;
-height: 30px;
-background-color:#58D3D6;
--webkit-transform: translateY(-26px);
+100%{
 }
 
 }
 
-@-ms-keyframes bubblingG {
-0% {
-width: 13px;
-height: 13px;
-background-color:#FBF500;
--ms-transform: translateY(0);
+@-webkit-keyframes bounce_circleG{
+0%{
 }
 
-100% {
-width: 30px;
-height: 30px;
-background-color:#58D3D6;
--ms-transform: translateY(-26px);
+50%{
+background-color:#000000}
+
+100%{
 }
 
 }
 
-@-o-keyframes bubblingG {
-0% {
-width: 13px;
-height: 13px;
-background-color:#FBF500;
--o-transform: translateY(0);
+@-ms-keyframes bounce_circleG{
+0%{
 }
 
-100% {
-width: 30px;
-height: 30px;
-background-color:#58D3D6;
--o-transform: translateY(-26px);
+50%{
+background-color:#000000}
+
+100%{
 }
 
 }
 
-@keyframes bubblingG {
-0% {
-width: 13px;
-height: 13px;
-background-color:#FBF500;
-transform: translateY(0);
+@-o-keyframes bounce_circleG{
+0%{
 }
 
-100% {
-width: 30px;
-height: 30px;
-background-color:#58D3D6;
-transform: translateY(-26px);
+50%{
+background-color:#000000}
+
+100%{
 }
+
 }
-</div>
+
+@keyframes bounce_circleG{
+0%{
+}
+
+50%{
+background-color:#000000}
+
+100%{
+}
+
+}
