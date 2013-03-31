@@ -89,7 +89,8 @@
 				google.maps.event.trigger(map, 'resize');
 				map.setCenter(CITY_CENTER[city]);
         
-				loadRoutes(city);
+        doTranslation();
+        loadRoutes(city);
         loadData(city);
 			});
 			
