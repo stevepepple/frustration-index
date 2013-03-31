@@ -111,7 +111,7 @@ div.controls { float:left; height:90px; width:300px; }
 }
 
 #currentTime { font-size: 30px; width:180px; }
-#day { color: #555555; width: 172px; }
+#day { color: #555555; width: 174px; }
 
 #currentTime div { float: left; padding:5px; padding-bottom:10px; padding-top:10px; }
 #currentTime div.hours,
