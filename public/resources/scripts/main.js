@@ -24,6 +24,7 @@ DAY = "10/01/2012"
 window.sf = new Object;
 window.sf.abbr = [{"1":["001","01EXTRA"],"2":"002","3":"002-WKY","4":"002-WKY","5":"005","6":"006","7":"006","71":"006","71L":"006","8X":"008X","9":"009","9L":"009","12":["012-WKY","012"],"88":"038","14":"014","16X":"016X","17":"017","18":"018","19":["019","019-WKY"],"21":"021","22":"022","23":"023","24":"024","27":"027","28":["028","028 SAT","028-WKY"],"29":"029","30":"030","30X":"130X","31":"031","33":"033","35":"035","36":"036","37":"037","38":"038","39":"039","41":"041","43":["043","043-WKY"],"44":"044","45":"030","47":["047-WKY","047"],"48":"048","49":"049","52":"052","54":"054","56":"056","59":"059","61":"61","66":"66","67":"67","80":"080","80X":"080","81X":"080","82X":"080","90":"090","91":"091","14L":"114XL","14X":"114XL","95":"095SD","38AX":"138L","38BX":"138L","1X":"101X","31X":"101X","38X":"101X", "L-OWL": "094 MC L-N OWL", "M-OWL": "094 MC L-N OWL", "N-OWL": "094 MC L-N OWL", "38L":"138L", "J":"093", "M":"093", "N":"093"}];
 window.sf.routes = new Array();
+window.event = new Object;
     
 // more styles: http://mapsys.info/34436/styled-maps-using-google-maps-api-version-3/ 
 // https://gist.github.com/41latitude
@@ -141,11 +142,7 @@ function loadData(city) {
     
     $("#loader .message").text("Loading data for " + city.toTitleCase() + ". This may take a moment.");
     
-    if(city == "sf") {
-      path = "resources/data/" + city + "/bus-capacity.csv"
-    } else {
-      path = "resources/data/" + city + "/trip_stats.csv"
-    }
+    path = "resources/data/" + city + "/trip_stats.csv"
     
     /* Clean up */
     $("#range").find(".segment").remove()
@@ -186,7 +183,7 @@ function loadData(city) {
       //var trip = bus.dimension(function(d) { return d.trip_id });
       //var trips = trip.group();      
       var time = bus.dimension(function(d) { return d.time });
-      var by_stop = bus.dimension(function(d) { return d.stop_id });
+      by_stop = bus.dimension(function(d) { return d.stop_id });
       
       var total_stops = by_stop.groupAll().reduceCount().value();
       var times = time.group();
@@ -262,7 +259,7 @@ function loadData(city) {
         /* How many unique stops are there in this time range */
         var num_stops_count = by_stop.group().reduceCount().all();
         countByStop = {}
-        
+                
         Array.prototype.slice.call(num_stops_count).forEach(function(d) { countByStop[d.key] = d.value; })
 
         /* Store the chart data first */
@@ -274,7 +271,7 @@ function loadData(city) {
           var cap_grade, delay_grade, speed_grade;
 
           var size = countByStop[p.stop_id];
-          
+                    
           if (p.cap_grade == "" && p.delay_grade == "" && p.speed_grade == "") {
             return true;
           }
@@ -341,7 +338,7 @@ function loadData(city) {
           return object; 
         }
         
-        /* Now go ahead and chart everything */
+        /* Now go ahead and chart everything */        
         $.each(chart, function(i, value) {
           var stop_id = i;
           
@@ -351,22 +348,22 @@ function loadData(city) {
         });
         
         function plotFrustration(key, value, type) {
-          //by_stop.filterExact(p.stop_id);
-          //unique_stops = by_stop.top(Infinity).length
-          var current = stop.filterExact(key)
+
+          var current = stop.filterExact(key);
           
           if (current.top(1).length > 0) {
             lat = current.top(1)[0].stop_lat;
             lon = current.top(1)[0].stop_lon;   
             
             if (typeof map != "undefined") {
-              map.addOverlay(lat, lon, dotGrade[value], dotColor[type])
+              map.addOverlay(lat, lon, dotGrade[value], dotColor[type], key)
             }
             
           } else {
             //console.log("stop does not exist: " + key)
-          }
+          }          
         }
+        
       }
 
     });

@@ -152,7 +152,7 @@ google.maps.Map.prototype.clearOverlays = function() {
   }
 }
 
-google.maps.Map.prototype.addOverlay = function(lat, lon, size, color) {
+google.maps.Map.prototype.addOverlay = function(lat, lon, size, color, key) {
   var coord = new google.maps.LatLng(lat, lon)
 
   var circleOptions = {
@@ -161,11 +161,11 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size, color) {
     strokeOpacity: 0.0,
     strokeWeight: 0.0,
     fillColor: color,
-    fillOpacity: 1.0,
+    fillOpacity: 0.8,
     map: map,
     center: coord,
     radius: size,
-    title: "Test"
+    title: key
   };
 
   var circle = new google.maps.Circle(circleOptions);
@@ -179,17 +179,25 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size, color) {
         map.panTo(marker.getPosition());
       }, 3000);
   }); */
-  /*
-  google.maps.event.addListener(circle, 'click', function(ev){
-    console.log(ev)
+  google.maps.event.addListener(circle, 'click', function(event){
+    window.event = event;
     
-    map.setZoom(14);
-    map.setCenter(marker.getPosition());
+    $(".mapTooltip").remove();
     
-    infowindow.setPosition(circle.getCenter());
-    infowindow.open(map);
+    var x = event.Ra.clientX;
+    var y = event.Ra.clientY;
+    var stop_id = circle.title;
+    
+    var tooltip = $("<div class='mapTooltip'>Stop: " + circle.title + "</div>")
+    $("#map_canvas").before(tooltip)
+    tooltip.css("left", (x + 10) + "px");
+    tooltip.css("top", (y + 10) + "px");    
+    //map.setZoom(14);
+    //map.setCenter(circle.getPosition());
+    
+    //infowindow.setPosition(circle.getCenter());
+    //infowindow.open(map);
   });
-  */
   
   overlays.push(circle);
 };

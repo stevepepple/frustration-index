@@ -111,6 +111,16 @@ div.controls { float:left; height:90px; width:300px; }
 #currentTime div.minutes,
 #currentTime div.seconds { border:solid 1px #AAAAAA; color:#222222; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
+.mapTooltip {
+  background:#FFFFFF;
+  border:solid 1px #DDDDDD;
+  padding:8px;
+  position:absolute;
+  height: 100px;
+  width: 200px;
+  z-index:2000;
+}
+
 .ui-slider { background:#CCCCCC; clear:both; display:block; }
 
 .ui-slider-handle.ui-state-default {
