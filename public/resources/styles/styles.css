@@ -1,12 +1,12 @@
 html { height: 100% }
-body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue"; background: #FFFFFF; }
-#map_canvas { height: 82%; width:95%; margin-left: auto; margin-right: auto; display:none; }
+body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue", Arial; background: #FFFFFF; }
+#map_canvas { height: 82%; width:95%; margin-left: auto; margin-right: auto; }
 
 
 #header { height:60px; }
 
 #header #logo {
-  background: url('../../images/logo.jpg') no-repeat;
+  background: url('../../images/logo.jpg') no-repeat 16px 10px;
   width:350px;
   height:60px;
 }
@@ -15,7 +15,7 @@ body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue"; backg
   color: #000000;
   float:right;
   font-size:20px;
-  margin:10px;
+  margin:20px;
 }
 
 #loader {
@@ -31,16 +31,16 @@ body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue"; backg
 }
 
 #legend .factor {
-  width:70px;
+  color: #000000;
   height:60px;
-  padding-left:60px;
+  padding-left:58px;
   padding-top:20px;
   float:right;
+  width:70px;
 }
 
-
 #legend .delay {
-  background: url('../../images/delay.jpg') no-repeat;
+  background: url("../../images/delay.jpg") no-repeat scroll 10px 0 transparent;
 }
 
 #legend .capacity {
@@ -61,15 +61,14 @@ body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue"; backg
 
 #range {
   display:block;
-  font-family: "Yanone Kaffeesatz" "Helvetica Neue";
+  font-family: "Helvetica Neue", "Yanone Kaffeesatz";
   margin-bottom:4px;
   position:relative;
   text-align:center;
 }
 
-#city {
-  background: #FFFFFF;
-}
+#city { background: #FFFFFF; margin-top:12px; }
+#city option { line-height: 30px; }
 
 #slider {
   height:8px;
@@ -92,19 +91,27 @@ div.controls { float:left; height:90px; width:300px; }
   z-index: 100;
 }
 
-#range .tick { width:1px; border:solid 1px #AAAAAA; height: 100%; position:relative; margin-top:-2px;margin-left:50%; clear:none;}
+#range .tick { 
+  border: 1px solid #AAAAAA;
+  clear: none;
+  height: 21px;
+  margin-left: 50%;
+  margin-top: 5px;
+  position: relative;
+  width: 1px;
+}
 
 #range .label {
   background: #FFFFFF;
   bottom: 0;
-  color: #222222;
+  color: #000000;
   left: 50%;
   margin-left: -18px;
   position: absolute;
 }
 
 #currentTime { font-size: 30px; width:180px; }
-#day { color: #555555; width: 180px; }
+#day { color: #555555; width: 172px; }
 
 #currentTime div { float: left; padding:5px; padding-bottom:10px; padding-top:10px; }
 #currentTime div.hours,
@@ -112,14 +119,51 @@ div.controls { float:left; height:90px; width:300px; }
 #currentTime div.seconds { border:solid 1px #AAAAAA; color:#222222; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 .mapTooltip {
-  background:#FFFFFF;
+  background:#EEEEEE;
   border:solid 1px #DDDDDD;
+  color: #000000;
   padding:8px;
   position:absolute;
-  height: 100px;
-  width: 200px;
+  height: 135px;
+  width: 280px;
   z-index:2000;
 }
+
+.mapTooltip .tile {
+  border: 1px solid #000000;
+  color: #000000;
+  float: left;
+  height: 92px;
+  text-align:center;
+  width: auto;
+}
+
+.mapTooltip .tile.delay { background: #FBF500; }
+.mapTooltip .tile.capacity { background: #58D3D6; }
+.mapTooltip .tile.speed { background: #E07C94; }
+
+.mapTooltip .tile .label {
+  background:none;
+  border-bottom: 1px solid #000000;
+  border-radius: 0px;
+  color: #000000;
+  width:60px;
+}
+
+.mapTooltip .tile .icon {
+  height:50px;
+}
+
+.mapTooltip .tile .grade {
+  border-top: 1px solid #000000;
+}
+
+.mapTooltip .tile .gradeA { background: url('../../images/white/LOS-A.gif') center center no-repeat; }
+.mapTooltip .tile .gradeB { background: url('../../images/white/LOS-B.gif') center center no-repeat; }
+.mapTooltip .tile .gradeC { background: url('../../images/white/LOS-C.gif') center center no-repeat; }
+.mapTooltip .tile .gradeD { background: url('../../images/white/LOS-D.gif') center center no-repeat; }
+.mapTooltip .tile .gradeE { background: url('../../images/white/LOS-E.gif') center center no-repeat; }
+.mapTooltip .tile .gradeF { background: url('../../images/white/LOS-F.gif') center center no-repeat; }
 
 .ui-slider { background:#CCCCCC; clear:both; display:block; }
 
