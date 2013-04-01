@@ -18,17 +18,45 @@
 
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/overcast/jquery-ui.css" />
   <link rel="stylesheet" href="resources/styles/styles.css" />
+  
+  <script>
+	$(document).ready(function() {
+    
+		language = $("#language");
+    language.val("english")
+
+		language.bind("change", function(){
+			lang = $(this).val();
+      $(".english, .french, .german").hide();
+      
+      $("#aboutContent").find("." + lang).show();
+		});
+		
+    doTranslation();
+    loadRoutes(city);    
+    // TODO: sleep until I get the map callback right 
+    loadData(city) ;       
+
+	});
+  </script>
  
 </head>
 <body>
     
     <div id="header">
-      <div id="logo"></div>
+      <a id="logo" href="/"></a>
     </div>
     <!-- GUI Selector -->
     <div id="aboutContent">
-      <div class="en">
-        <h3>US</h3>
+      <strong>Select Language:</strong><br/>
+      <select id="language">
+        <option value="english">English (US)</option>
+        <option value="french">French (Genève)</option>
+        <option value="german">Swiss-German (Zürich)</option>
+      </select>
+      
+      <div class="english">
+        <h2>US</h2>
         <p>
           <strong>Srinivas ASHOK</strong>, ideator, programmer</br>
           <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
@@ -46,35 +74,45 @@
           <a href="www.linkedin.com/in/stevepepple">www.linkedin.com/in/stevepepple</a>
         </p>
         <p>With the participation of Halie Kampman, Balz Mueller, and Tim Sze.</p>
-      
-        <h3>PROJECT</h3>
+        <hr/>
+        
+        <h2>PROJECT</h2>
         <p>Why?</p>
         <ul>
-          <li>Because we want happy ride !</li>
+          <li>Because we want a happy ride!</li>
           <li>Because this tool can be useful for both users and planners.</li>
           <li>Because it is a way to compare happiness across the three cities.</li>
         </ul>
-      
-        <h3>PROCESS</h3>
+        <img src="images/about/logos1.jpeg" width="596" height="130" alt="Logos1">
+        <hr/>
+        
+        <h2>PROCESS</h2>
         <p>Our project locations map</p>
         <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
+        <hr/>
         
-        <h3>DATA</h3>
+        <h2>DATA</h2>
         <h3>Level Of Service</h3>
         <p>
           The frustration index is based on a LOS scale.<br/>
-          The overall frustration is the combination of three frustration factors: capacity, delay and speed. Each of these factors is also associated with a LOS after raw computation.
+          The overall frustration is the combination of three frustration factors: 
+          <ul>
+            <li>capacity</li>
+            <li>delay</li>
+            <li>speed</li>
+          </ul>
+          Each of these factors is also associated with a LOS after raw computation.<br/><br/>
+          <img src="images/about/grading-system.jpg" width="386" height="370" alt="Grading System">
         </p>
-        <img src="images/about/grading-system.jpg" width="386" height="370" alt="Grading System">
         <p>
-          To correlate the LOS with numerical values, we have distributed the LOS like this:
-          </br>
+          To correlate the LOS with numerical values, we have distributed the LOS like this:</br></br>
           <img src="images/about/losgrade.jpeg" width="585" height="117" alt="Losgrade">
           <p>
             Where each LOS value is twice bigger as the previous one, except for A which is 0.</br>
             The area of each circle associated with a LOS is twice bigger as the previous LOS one, except for LOS A which has no circle.
           </p>
-          <h3>FORMULAE</h3>
+          <hr/>
+          <h2>FORMULAE</h2>
           <p>
             Each frustration factor is rawly calculated and then associated with a level of service LOS.<br/>
             The overall frustration is the average of the LOS of the frustration factors.
@@ -96,7 +134,7 @@
           <p>
             The Levels Of Service are defined as follows.
           </p>
-          <table>
+          <table class="table">
             <thead>
               <th>LOS </th>
               <th>Load Factor (p/seats)</th>
@@ -121,8 +159,8 @@
           <h3>Delay</h3>
           <p>
             At the stop n, for the trip t: </br>
-            Dnt = AAn – SAn
-            </br>
+            <strong>Dnt = AAn – SAn</strong>
+            <br/><br/>
             Where: </br>
             <ul>
               <li>AAn is the actual arrival at the stop n</li>
@@ -143,7 +181,7 @@
           </p>
           <p>
             The Levels Of Service are defined as follows.<br/>
-            <table>
+            <table class="table">
               <thead>
                 <th>LOS </th>
                 <th>dnt</th>
@@ -160,11 +198,10 @@
             </table>
           </p>
           <p>Then, we calculate the average delay LOS of all the delay LOS of the trips stopping at the stop considered during our time window.</p>
-          </br>
           
           <h3>Speed</h3>
           <p>
-            Between the stops n and n-1 :</br>
+            Between the stops n and n-1 :<br/><br/>
             In theory (scheduled time):<br/>
             
             <strong>Vn,n-1  = Dn,n-1 / STn,n-1 </strong><br/>
@@ -191,7 +228,8 @@
                 </ul>
               </li>
               <li>
-                Dn,n-1 is the distance as the crow flies between the stop n and n-1                        <ul>
+                Dn,n-1 is the distance as the crow flies between the stop n and n-1
+                <ul>
                   <li><strong>Dn,n-1 = √ ( (Ln-1-Ln)2 + (ln-1-ln)2  )</strong></li>
                   <li>Ln-1 is the longitude of the stop n-1</li>
                   <li>Ln is the longitude of the stop n</li>
@@ -202,14 +240,14 @@
             </ul>
             <br/>
             The Levels Of Service are defined as follows.<br/>
-            <table>
+            <table class="table">
               <thead>
                 <th>LOS </th>
                 <th>Vn, n-1</th>
                 <th>Comments </th>
               </thead>
               <tbody>
-                <tr><td>A</td><td>	0 – 0.5</td><td>Vehicle moves quickly</td></tr>
+                <tr><td>A</td><td>0 – 0.5</td><td>Vehicle moves quickly</td></tr>
                 <tr><td>B</td><td>0.6 – 0.15</td><td>Tolerable slower pace</td></tr>
                 <tr><td>C</td><td>0.16 – 0.25</td><td>Too slow</td></tr>
                 <tr><td>D</td><td>0.26 – 0.35</td><td>Frustrating</td></tr>
@@ -220,12 +258,13 @@
             <br/>
             <p>Then, we calculate the average delay LOS of all the delay LOS of the trips stopping at the stop considered during our time window.</p>
             
+            <hr/>
             <h2>AMBITIONS</h2>
-            <h3>HAPPINESS INDEX</h3>
+            <strong>HAPPINESS INDEX</strong>
             <p>We wanted to turn it positive too!</p>
             
-            <h3>FRUSTRATION FACTORS</h3>
-            <p>We wanted to add much more frustration factors:</p>
+            <strong>FRUSTRATION FACTORS</strong>
+            <p>We wanted to add many more frustration factors:</p>
             <p>
               <strong>Headway</strong><br/>
               It is the time between two consecutive trips on a same route. It is a measure of availability. 
@@ -236,26 +275,453 @@
               In reality:<br/>
               <strong>= AAb – AAb-1  </strong><br/>
               <em>where b is the bus following the bus b-1</em>
-              
-              
             </p>
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>AAb – AAb-1 (min)</th>
+                <th>veh/h</th>
+                <th>Comments</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>&lt;10</td><td>6</td><td>Passengers do not need schedules </td></tr>
+                <tr><td>B</td><td>10-14</td><td>>5-6</td><td>Frequent service, passengers consult schedules </td></tr>
+                <tr><td>C</td><td>15-20</td><td>3-4</td><td>Maximum desirable time to wait if bus/train missed</td></tr>
+                <tr><td>D</td><td>21-30</td><td>2</td><td>Service unattractive to choice riders</td></tr>
+                <tr><td>E</td><td>31-60</td><td>1</td><td>Service available during the hour</td></tr>
+                <tr><td>F </td><td>&gt;60</td><td>&lt;1</td><td>Service unattractive to all riders </td></tr>
+              </tbody>
+            </table>
+            <br/>
+            <strong>Waiting time</strong>
+            <p>It is an alternative to the headway.</p>
+            <p>For someone who doesn’t look at the schedule, his average waiting time at a bus stop is half the headway.</p>
+            <p>
+              In theory :<br/>
+              <strong>= h/2 </strong><br/>
+              In reality :<br/>
+              <strong>= = (AAb – AAb-1)/2 </strong><br/>
+              <em>where b is the bus following the bus b-1</em>
+              
+              <table class="table">
+                <thead>
+                  <th>LOS</th>
+                  <th>(AAb – AAb-1)/2 (min)</th>
+                </thead>
+                <tbody>
+                  <tr><td>A</td><td>5</td></tr>
+                  <tr><td>B</td><td>5-10</td></tr>
+                  <tr><td>C</td><td>10-15</td></tr>
+                  <tr><td>D</td><td>15-20</td></tr>
+                  <tr><td>E</td><td>20-30</td></tr>
+                  <tr><td>F</td><td>&gt;30</td></tr>
+                </tbody>
+              </table>
+            </p>
+            <strong>Hours of service</strong>
+            <p>Hours of service are a good indicator of availability for the whole route.</p>
+            <p>= departure time* of the last run – departure time* of the first run + 1
+*in hour, based on 24 clock.</p>
+
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>Hours of Service</th>
+                <th>Comments</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>19-24</td><td>Night or “owl” service provided </td></tr>
+                <tr><td>B</td><td>17-18</td><td>Late evening service provided </td></tr>
+                <tr><td>C</td><td>14-16</td><td>Early evening service provided </td></tr>
+                <tr><td>D</td><td>12-13</td><td>Daytime service provided </td></tr>
+                <tr><td>E</td><td>4-11</td><td>Peak hour service only or limited midday service </td></tr>
+                <tr><td>F</td><td>0-3</td><td>Very limited or no service</td></tr>
+              </tbody>
+            </table>
+            <br/>
             
+            <strong>Speed constancy</strong>
+            <p>This is a major comfort factor. Therefore, it is also a major frustration factor.</p>
+            <p>The standard deviation of the average speeds between two stops estimates if a trip is subject to high variation in its speed.</p>
+            <p>Other indicators, such as the ratio number of stops/length of the route, can help figuring the speed variation.</p>
+
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>Travel Time Difference (min)</th>
+                <th>Comments</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>≤0</td><td>Faster by transit than by automobile </td></tr>
+                <tr><td>B</td><td>1-15</td><td>About as fast by transit as by automobile </td></tr>
+                <tr><td>C</td><td>16-30</td><td>Tolerable for choice riders </td></tr>
+                <tr><td>D</td><td>31-45</td><td>Round-trip at least an hour longer by transit </td></tr>
+                <tr><td>E</td><td>46-60</td><td>Tedious for all riders; may be best possible in small cities</td></tr>
+                <tr><td>F</td><td>&gt;60</td><td>Unacceptable to most riders</td></tr>
+              </tbody>
+            </table>
+            <br/>
             
+            <strong>Economic efficiency</strong>
+            <p>It is a good frustration factor on the planner side.</p>
+          </p>
+          <h3>MOBILE APP</h3>
+          
+          <strong>Happy travel!</strong>
+
+          <p>A happy trip planner!</p>
+          <p>It defines personalized routes minimizing the frustration of the users.
+          The user tunes his own frustration index by checking or giving weight to some frustration factors, ie capacity, delay, speed, waiting time, ...</p>
+          <p>Then, the app defines the dream route for the user, which minimizes his personal frustration.</p>
+          <hr/>
+          <h2>SOURCES</h2>
+          <ul>
+            <li><a href="http://www.sfmta.com/cms/mfleet/indxfleet.htm">http://www.sfmta.com/cms/mfleet/indxfleet.htm</a></li>
+            <li><a href="http://www.streetcar.org">http://www.streetcar.org </a></li>
+            <li><a href="http://www.tpg.ch/les-vehicules">http://www.tpg.ch/les-vehicules</a></li>
+            <li><a href="http://www.stadt-zuerich.ch/content/vbz/de/index/die_vbz/fahrzeuge/unsere_fahrzeuge.html">http://www.stadt-zuerich.ch/content/vbz/de/index/die_vbz/fahrzeuge/unsere_fahrzeuge.html</a></li>
+            <li><a href="http://www.vtpi.org/tdm/">http://www.vtpi.org/tdm/</a></li>
+            <li><a href="http://www.apta.com/resources/statistics/Documents/FactBook/APTA_2011_Fact_Book.pdf http://www.fhwa.dot.gov/policy/2010cpr/chap4.htm#9">http://www.apta.com/resources/statistics/Documents/FactBook/APTA_2011_Fact_Book.pdf http://www.fhwa.dot.gov/policy/2010cpr/chap4.htm#9</a></li>
+            <li><a href="http://www.trb.org/Main/Blurbs/153590.aspx">http://www.trb.org/Main/Blurbs/153590.aspx</a><br/>
+            >	Kittelson & Associates, National Research Council (U.S.), Transit Cooperative Research Program, United States, & Transit  Development Corporation. 2003. Transit capacity and quality of service manual. Washington, D.C: Transportation Research Board.</li>
             
-            
-            
-            
-            
+          </ul>
+          
+      </div>
+      <!-- End English -->
+      <div class="french">
+        <h2>NOUS</h2>
+        <p>
+          <strong>Srinivas ASHOK</strong>, concepteur, programmeur</br>
+          <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
+        </p>
+        <p>
+          <strong>Daphné DETHIER</strong>, conceptrice, développeuse, graphic designer</br>
+          <a href="www.linkedin.com/pub/daphné-dethier/48/9a0/652/en">www.linkedin.com/pub/daphné-dethier/48/9a0/652/en</a>
+        </p>
+        <p>
+          <strong>Carmel DUDLEY</strong>, programmeuse
+          <a href="www.linkedin.com/in/carmeldudley">www.linkedin.com/in/carmeldudley</a>
+        </p>
+        <p>
+          <strong>Steve PEPPLE</strong>, concepteur, programmeur
+          <a href="www.linkedin.com/in/stevepepple">www.linkedin.com/in/stevepepple</a>
+        </p>
+        <p>Avec la participation de Halie Kampman, Balz Mueller, et Tim Sze.</p>
+        <hr/>
+        
+        <h2>PROJET</h2>
+        <p>Pourquoi?</p>
+        <ul>
+          <li>Parce qu’on veut être heureux en transport public !</li>
+          <li>Parce qu’il constitue un outil utile à l’utilisateur et au planificateur.</li>
+          <li>Parce que c’est un moyen de comparer le bonheur en transport public entre les trois villes.</li>
+        </ul>
+        <img src="images/about/logos1.jpeg" width="596" height="130" alt="Logos1">
+        <hr/>
+        
+        <h2>PROCESSUS</h2>
+        <p>La carte de nos rendez-vous:</p>
+        <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
+        <hr/>
+        
+        <h2>DONNEES</h2>
+        <h3>LOS</h3>
+        <strong>Level Of Service / Niveau de service</strong>
+        <p>
+          L’indice de frustration est calqué sur une échelle de niveaux de service (LOS).
+          La frustration totale est la combinaison des trois facteurs de frustration:
+          <ul>
+            <li>capacité</li>
+            <li>retard</li>
+            <li>vitesse</li>
+          </ul>
+          Chacun de ces facteurs est également associé à un niveau de service (LOS).<br/><br/>
+          <img src="images/about/losgrade-fr.jpg" width="438" height="331" alt="Losgrade Fr">
+        </p>
+        <p>
+          Afin de corréler les niveaux LOS avec des valeurs numériques, nous avons opté pour cette relative distribution :</br></br>
+          <img src="images/about/losgrade.jpeg" width="585" height="117" alt="Losgrade">
+          <p>
+            Où chaque valeur de LOS est deux fois plus grande que la valeur du LOS précédent, sauf pour le LOS A qui vaut zéro.<br/>
+            La surface de chaque cercle associé à un LOS est deux fois plus importante que celle du cercle correspondant au précédent LOS, sauf pour le LOS A dont le rayon du cercle est nul.
+          </p>
+          <hr/>
+          <h2>FORMULES</h2>
+          <p>
+            Chaque facteur de frustration est calculé numériquement puis associé à un niveau de service LOS. La frustration totale est la moyenne des niveaux de service LOS des facteurs de frustration.
+            <br/>
+          </p>
+          <h3>Capacité </h3>
+          <p>
+            A l’arrêt n, pour le trip t (un trip est un véhicule assigné à un itinéraire et à un horaire) :
+            <br/>
+
+            <strong>Pnt=∑(Bx-Ex)</strong>
+            pour x qui va de 1 à n (où 1 est le premier arrêt du trip)
+
+            Où ∑ représente l’opération sommation<br/>
+            <ul>
+              <li>Pnt est le nombre de passagers à l’arrêt n sur le trip t</li>
+              <li>Bx est le nombre de passagers qui embarquent à l’arrêt x</li>
+              <li>Ex est le nombre de passagers qui débarquent à l’arrêt x</li>
+            </ul>
+          </p>
+          <p>
+            Afin de définir les niveaux de service, nous calculons le facteur de charge comme suit :
+          </p>
+          <table class="table">
+            <thead>
+              <th>LOS</th>
+              <th>Facteur de charge (Pnt/siège )</th>
+              <th>Commentaires </th>
+            </thead>
+            <tbody>
+              <tr><td>A</td><td>0.00-0.50</td><td>No passenger need sit next to another</td></tr>
+              <tr><td>B</td><td>0.51-0.75</td><td>Passengers can choose where to sit</td></tr>
+              <tr><td>C</td><td>0.76-1.00 </td><td>All passengers can sit</td></tr>
+              <tr><td>D</td><td>1.01-1.25</td><td>Comfortable standee load for design</td></tr>
+              <tr><td>E</td><td>1.26-1.50</td><td>Maximum schedule load</td></tr>
+              <tr><td>F </td><td>>1.50</td><td>Crush load</td></tr>
+            </tbody>
+          </table>
+          <p>
+            Enfin, nous calculons la moyenne des LOS de capacité de tous les trips qui s’arrêtent à l’arrêt considéré durant l’intervalle de temps considéré (durée de 5 minutes).
           </p>
           
+          <h3>Retard</h3>
+          <p>
+            A l’arrêt n, pour le trip t (un trip est un véhicule assigné à un itinéraire et à un horaire):</br>
+            <strong>Dnt = AAn – SAn</strong>
+            <br/><br/>
+            Where: </br>
+            <ul>
+              <li>AAn est la réelle heure d’arrivée du trip t à l’arrêt n</li>
+              <li>SAn est l’heure théorique d’arrivée du trip t à l’arrêt n</li>
+            </ul>
+          </p>
+          <p>
+            Pour calculer le niveau de service LOS, nous définissons la valeur maximale et minimale du retard sur l’itinéraire considéré. Ensuite, nous définissons des intervalles basés sur la différence entre la valeur de retard considérée et la valeur minimale.</br>
+            <strong>
+              dnt = ( Dnt- d) / (D - d)
+            </strong><br/>
+            Où
+            <ul>
+              <li>Dnt est le retard du trip t à l’arrêt n</li>
+              <li>d est le retard minimum</li>
+              <li>D est le retard maximum</li>
+            </ul>
+          </p>
+          <p>
+            Les niveaux de service LOS sont définis comme suit.<br/>
+            <table class="table">
+              <thead>
+                <th>LOS </th>
+                <th>dnt</th>
+                <th>Commentaires </th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>0 – 0.5</td><td>Véhicule à l’heure</td></tr>
+                <tr><td>B</td><td>0.6 – 0.15</td><td>Retard tolérable</td></tr>
+                <tr><td>C</td><td>0.16 – 0.25</td><td>Système non fiable</td></tr>
+                <tr><td>D</td><td>0.26 – 0.35</td><td>Frustrant</td></tr>
+                <tr><td>E</td><td>0.36 – 0.65</td><td>Très frustrant</td></tr>
+                <tr><td>F </td><td>>0.66 - 1</td><td>Retard intolérable</td></tr>
+              </tbody>
+            </table>
+          </p>
           
-        
-      </div>
-      
+          <h3>Vitesse</h3>
+          <p>
+            Entre les arrêts n et n-1 :<br/><br/>
+            En théorie (horaires) :<br/>
+            
+            <strong>Vn,n-1  = Dn,n-1 / STn,n-1 </strong><br/>
+            <br/>
+            En réalité (temps réel) :<br/>
+            <strong>Vn,n-1  = Dn,n-1 / ATn,n-1</strong>
+            <br/>
+            With:
+            <ul>
+              <li>
+                STn,n-1 est le temps de trajet théorique entre les arrêts n et n-1 
+                  <ul>
+                    <li><strong>STn,n-1 = SAn – SAn-1</strong></li>
+                    <li>SAn est l’heure théorique d’arrivée à l’arrêt n</li>
+                    <li>SAn-1 est l’heure théorique d’arrivée à l’arrêt n-1</li>
+                  </ul>
+              </li>
+              <li>
+                ATn,n- est le temps de trajet réel entre les arrêts n et n-1 
+                <ul>
+                  <li><strong>ATn,n-1 = AAn – AAn-1</strong></li>
+                  <li>AAn est l’heure réelle d’arrivée à l’arrêt n</li>
+                  <li>AAn-1 est l’heure réelle d’arrivée à l’arrêt n-1</li>
+                </ul>
+              </li>
+              <li>
+                Dn,n-1 est la distance à vol d’oiseau entre les arrêts n et n-1
+                <ul>
+                  <li><strong>Dn,n-1 = √ ( (Ln-1-Ln)2 + (ln-1-ln)2  )</strong></li>
+                  <li>Ln-1 est la longitude de l’arrêt n-1</li>
+                  <li>Ln est la longitude de l’arrêt  n</li>
+                  <li>ln-1 est la latitude de l’arrêt n-1</li>
+                  <li>ln est la latitude de l’arrêt n</li>
+                </ul>
+              </li>
+            </ul>
+            <br/>
+            Les niveaux de service LOS sont définis comme suit.<br/>
+            <table class="table">
+              <thead>
+                <th>LOS </th>
+                <th>Vn, n-1</th>
+                <th>Commentaires</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>0 – 0.5</td><td>Le véhicule avance vite</td></tr>
+                <tr><td>B</td><td>0.6 – 0.15</td><td>Vitesse ralentie tolérable</td></tr>
+                <tr><td>C</td><td>0.16 – 0.25</td><td>Trop lent</td></tr>
+                <tr><td>D</td><td>0.26 – 0.35</td><td>Frustrant</td></tr>
+                <tr><td>E</td><td>0.36 – 0.65</td><td>Très frustrant</td></tr>
+                <tr><td>F </td><td>>0.66 - 1</td><td>Quasi à l’arrêt</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            <p>Ensuite, nous calculons le LOS de vitesse moyen de tous les LOS de vitesse des trips qui s’arrêtent à l’arrêt considéré durant notre intervalle de temps.</p>
+            
+            <hr/>
+            <h2>AMBITIONS</h2>
+            <strong>INDEX BONHEUR</strong>
+            <p>Nous voulions inverser l’index et présenter sa version positive !<br/>
+              Montrer la carte négative de l’index de frustration : la carte du bonheur !
+            </p>
+            
+            <strong>FACTEURS DE FRUSTRATION</strong>
+            <p>Nous voulions inclure bien plus de facteurs de frustrations:</p>
+            <p>
+              <strong>Fréquence de l’offre</strong><br/>
+Il s’agit de l’intervalle de temps entre deux trips consécutifs. C’est une mesure de la disponibilité de l’offre.
+            </p>
+            <p>
+              E théorie:<br/>
+              <strong>= h = headway</strong><br/>
+              En réalité:<br/>
+              <strong>= AAb – AAb-1  </strong><br/>
+              <em>avec t le trip qui suit le trip t-1</em>
+            </p>
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>AAb – AAb-1 (min)</th>
+                <th>veh/h</th>
+                <th>Commentaires </th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>&lt;10</td><td>6</td><td>Les passagers n’ont pas besoin d’horaire</td></tr>
+                <tr><td>B</td><td>10-14</td><td>>5-6</td><td>Service fréquent, les passagers consultent l’horaire</td></tr>
+                <tr><td>C</td><td>15-20</td><td>3-4</td><td>Temps d’attente maximum tolérable si trip manqué </td></tr>
+                <tr><td>D</td><td>21-30</td><td>2</td><td>Service non attractif pour l’utilisateur qui a le choix</td></tr>
+                <tr><td>E</td><td>31-60</td><td>1</td><td>Service disponible à l’heure </td></tr>
+                <tr><td>F </td><td>&gt;60</td><td>&lt;1</td><td>Service non attractif pour tous utilisateurs</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            <strong>Temps d’attente</strong>
+            <p>C’est une alternative à la fréquence.</p>
+            <p>Un utilisateur qui ne fie pas aux horaires attendra en moyenne une durée égale à la moitié de la fréquence (headway) du service.</p>
+            <p>
+              En théorie:<br/>
+              <strong>= h/2 </strong><br/>
+              En réalité:<br/>
+              <strong>= = (AAb – AAb-1)/2 </strong><br/>
+              <em>avec t le trip qui suit le trip t-1</em>
+              <em>AAt-1 est l’heure réelle d’arrivée du trip t-1</em>
+              
+              <table class="table">
+                <thead>
+                  <th>LOS</th>
+                  <th>(AAb – AAb-1)/2 (min)</th>
+                </thead>
+                <tbody>
+                  <tr><td>A</td><td>5</td></tr>
+                  <tr><td>B</td><td>5-10</td></tr>
+                  <tr><td>C</td><td>10-15</td></tr>
+                  <tr><td>D</td><td>15-20</td></tr>
+                  <tr><td>E</td><td>20-30</td></tr>
+                  <tr><td>F</td><td>&gt;30</td></tr>
+                </tbody>
+              </table>
+            </p>
+            <strong>Couverture temporelle</strong>
+            <p>Il s’agit d’un bon indicateur à l’échelle d’une ligne. </p>
+            <p>=  heure de départ du dernier trip – heure de départ du premier trip + 1.</p>
 
-      
-      
-      
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>Couverture</th>
+                <th>Commentaire</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>19-24</td><td>Service de nuit fourni</td></tr>
+                <tr><td>B</td><td>17-18</td><td>Service de fin de soirée fourni</td></tr>
+                <tr><td>C</td><td>14-16</td><td>Service de début de soirée fourni</td></tr>
+                <tr><td>D</td><td>12-13</td><td>Service de jour</td></tr>
+                <tr><td>E</td><td>4-11</td><td>Service aux heures de pointes uniquement ou temps de midi </td></tr>
+                <tr><td>F</td><td>0-3</td><td>Service très limité ou inexistant</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            
+            <strong>Variations de vitesse</strong>
+            <p>Il s’agit d’un facteur majeur de confort. Dès lors, il s’agit aussi d’un majeur facteur de frustration</p>
+            <p>L’écart type des vitesses moyennes entre deux arrêts permet d’évaluer si un trip est sujet à de grandes variations dans sa vitesse.</p>
+            <p>D’autres indicateurs, tels que le ratio entre le nombre d’arrêts et la longueur (en distance) de la route, permet également d’estimer les variations de vitesses.</p>
+
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>Différence de durée (min)</th>
+                <th>Commentaires</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>≤0</td><td>Plus rapide en transport public qu’en voiture</td></tr>
+                <tr><td>B</td><td>1-15</td><td>Quasi le même temps de trajet pour les deux modes</td></tr>
+                <tr><td>C</td><td>16-30</td><td>Tolérable pour un utilisateur qui a le choix</td></tr>
+                <tr><td>D</td><td>31-45</td><td>Au moins une heure de plus en transport public pour un trajet aller-retour</td></tr>
+                <tr><td>E</td><td>46-60</td><td>Pénible pour tout utilisateur</td></tr>
+                <tr><td>F</td><td>&gt;60</td><td>Inacceptable pour la plupart des utilisateurs</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            
+            <strong>Efficacité économique</strong>
+            <p>C’est un bon facteur de frustration coté planificateur.</p>
+          </p>
+          <h3>MOBILE APP</h3>
+          
+          <strong>Happy travel!</strong>
+
+          <p>oyage heureux !</p>
+          <p>Une application qui offre des planifications d’itinéraires lesquels maximisent le bonheur de l’utilisateur.</p>
+          <p>L’application définit des itinéraires personnalisés qui minimisent la frustration des utilisateurs.<br/>
+L’utilisateur définit son propre index de frustration en choisissant et en pondérant les facteurs de frustrations (capacité, retard, vitesse, temps d’attente, …).<br/>
+Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heureux ! 
+          </p>
+          <hr/>
+          <h2>SOURCES</h2>
+          <ul>
+            <li><a href="http://www.sfmta.com/cms/mfleet/indxfleet.htm">http://www.sfmta.com/cms/mfleet/indxfleet.htm</a></li>
+            <li><a href="http://www.streetcar.org">http://www.streetcar.org </a></li>
+            <li><a href="http://www.tpg.ch/les-vehicules">http://www.tpg.ch/les-vehicules</a></li>
+            <li><a href="http://www.stadt-zuerich.ch/content/vbz/de/index/die_vbz/fahrzeuge/unsere_fahrzeuge.html">http://www.stadt-zuerich.ch/content/vbz/de/index/die_vbz/fahrzeuge/unsere_fahrzeuge.html</a></li>
+            <li><a href="http://www.vtpi.org/tdm/">http://www.vtpi.org/tdm/</a></li>
+            <li><a href="http://www.apta.com/resources/statistics/Documents/FactBook/APTA_2011_Fact_Book.pdf http://www.fhwa.dot.gov/policy/2010cpr/chap4.htm#9">http://www.apta.com/resources/statistics/Documents/FactBook/APTA_2011_Fact_Book.pdf http://www.fhwa.dot.gov/policy/2010cpr/chap4.htm#9</a></li>
+            <li><a href="http://www.trb.org/Main/Blurbs/153590.aspx">http://www.trb.org/Main/Blurbs/153590.aspx</a><br/>
+            >	Kittelson & Associates, National Research Council (U.S.), Transit Cooperative Research Program, United States, & Transit  Development Corporation. 2003. Transit capacity and quality of service manual. Washington, D.C: Transportation Research Board.</li>
+          </ul>
+      </div>
       
       
     </div>
