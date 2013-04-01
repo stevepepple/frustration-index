@@ -3,6 +3,11 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
   
   <link href="resources/scripts/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
   
@@ -23,16 +28,19 @@
 	$(document).ready(function() {
     
 		language = $("#language");
-    language.val("english")
+    language.val("english");
+    $(".french").hide();
+    $(".german").hide();
 
 		language.bind("change", function(){
 			lang = $(this).val();
-      $(".english, .french, .german").hide();
+      $(".english").hide();
+      $(".french").hide();
+      $(".german").hide();
       
       $("#aboutContent").find("." + lang).show();
 		});
 		
-    doTranslation();
     loadRoutes(city);    
     // TODO: sleep until I get the map callback right 
     loadData(city) ;       
@@ -56,27 +64,40 @@
       </select>
       
       <div class="english">
-        <h2>US</h2>
+        <h3><a href="#us">US</a></h3>
+        <h3><a href="#project">PROJECT</a></h3>
+        <h3><a href="#process">PROCESS</a></h3>
+        <h3><a href="#data">DATA</a></h3>
+        <h4><a href="#los">LOS</a></h4>
+        <h4><a href="#formulae">FORMULAE</a></h4>
+        <h3><a href="#ambitions">AMBITIONS</a></h3>
+        <h4><a href="#happiness">HAPPINESS INDEX</a></h4>
+        <h4><a href="#factors">FRUSTRATION FACTORS</a></h4>
+        <h4><a href="#mobile">MOBILE APP</a></h4>
+        <h3><a href="#sources">SOURCES</a></h3>
+        <hr/>
+        <br/>
+        <a class="brand" name="us"><h2>US</h2></a>
         <p>
           <strong>Srinivas ASHOK</strong>, ideator, programmer</br>
-          <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
+          <a href="http://www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
         </p>
         <p>
           <strong>Daphné DETHIER</strong>, ideator, formulator, graphic designer</br>
-          <a href="www.linkedin.com/pub/daphné-dethier/48/9a0/652/en">www.linkedin.com/pub/daphné-dethier/48/9a0/652/en</a>
+          <a href="http://www.linkedin.com/pub/daphné-dethier/48/9a0/652/en">www.linkedin.com/pub/daphné-dethier/48/9a0/652/en</a>
         </p>
         <p>
-          <strong>Carmel DUDLEY</strong>, programmer
-          <a href="www.linkedin.com/in/carmeldudley">www.linkedin.com/in/carmeldudley</a>
+          <strong>Carmel DUDLEY</strong>, programmer<br/>
+          <a href="http://http://www.linkedin.com/in/carmeldudley">www.linkedin.com/in/carmeldudley</a>
         </p>
         <p>
-          <strong>Steve PEPPLE</strong>, ideator, programmer, designer
-          <a href="www.linkedin.com/in/stevepepple">www.linkedin.com/in/stevepepple</a>
+          <strong>Steve PEPPLE</strong>, ideator, programmer, designer<br/>
+          <a href="http://www.linkedin.com/in/stevepepple">www.linkedin.com/in/stevepepple</a>
         </p>
         <p>With the participation of Halie Kampman, Balz Mueller, and Tim Sze.</p>
         <hr/>
         
-        <h2>PROJECT: FRUSTRATION INDEX</h2>
+        <a class="brand" name="#project"><h2>PROJECT: FRUSTRATION INDEX</h2></a>
         <p>Why?</p>
         <ul>
           <li>Because we want a happy ride!</li>
@@ -86,13 +107,13 @@
         <img src="images/about/logos1.jpeg" width="596" height="130" alt="Logos1">
         <hr/>
         
-        <h2>PROCESS</h2>
+        <a class="brand" href="#process"><h2>PROCESS</h2></a>
         <p>Our project locations map</p>
         <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
         <hr/>
         
-        <h2>DATA</h2>
-        <h3>Level Of Service</h3>
+        <a class="brand" href="#data"><h2>DATA</h2></a>
+        <a class="brand" href="#los"><h3>Level Of Service</h3></a>
         <p>
           The frustration index is based on a LOS scale.<br/>
           The overall frustration is the combination of three frustration factors: 
@@ -112,12 +133,12 @@
             The area of each circle associated with a LOS is twice bigger as the previous LOS one, except for LOS A which has no circle.
           </p>
           <hr/>
-          <h2>FORMULAE</h2>
+          <a class="brand" href="#formulae"><h2>FORMULAE</h2></a>
           <p>
             Each frustration factor is rawly calculated and then associated with a level of service LOS.<br/>
             The overall frustration is the average of the LOS of the frustration factors.
           </p>
-          <h3>Capacity</h3>
+          <a class="brand" href="#capacity"><h3>Capacity</h3></a>
           <p>
             At the stop n, for the trip t :<br/>
 
@@ -156,7 +177,7 @@
             Then, we calculate the average capacity LOS of all the capacity LOS of the trips stopping at the stop considered during our time window.
           </p>
           
-          <h3>Delay</h3>
+          <h4>Delay</h4>
           <p>
             At the stop n, for the trip t: </br>
             <strong>Dnt = AAn – SAn</strong>
@@ -199,7 +220,7 @@
           </p>
           <p>Then, we calculate the average delay LOS of all the delay LOS of the trips stopping at the stop considered during our time window.</p>
           
-          <h3>Speed</h3>
+          <h4>Speed</h4>
           <p>
             Between the stops n and n-1 :<br/><br/>
             In theory (scheduled time):<br/>
@@ -259,11 +280,11 @@
             <p>Then, we calculate the average delay LOS of all the delay LOS of the trips stopping at the stop considered during our time window.</p>
             
             <hr/>
-            <h2>AMBITIONS</h2>
-            <strong>HAPPINESS INDEX</strong>
+            <a class="brand" name="ambitions"><h2>AMBITIONS</h2></a>
+            <a class="brand" name="happiness"><h3>HAPPINESS INDEX</h3></a>
             <p>We wanted to turn it positive too!</p>
             
-            <strong>FRUSTRATION FACTORS</strong>
+            <a class="brand" name="factors"><h3>FRUSTRATION FACTORS</h3></a>
             <p>We wanted to add many more frustration factors:</p>
             <p>
               <strong>Headway</strong><br/>
@@ -365,7 +386,9 @@
             <strong>Economic efficiency</strong>
             <p>It is a good frustration factor on the planner side.</p>
           </p>
-          <h3>MOBILE APP</h3>
+          <hr/>
+                    
+          <a class="brand" href="#mobile"><h3>MOBILE APP</h3></a>
           
           <strong>Happy travel!</strong>
 
@@ -374,7 +397,7 @@
           The user tunes his own frustration index by checking or giving weight to some frustration factors, ie capacity, delay, speed, waiting time, ...</p>
           <p>Then, the app defines the dream route for the user, which minimizes his personal frustration.</p>
           <hr/>
-          <h2>SOURCES</h2>
+          <a class="brand" href="#sources"><h2>SOURCES</h2>
           <ul>
             <li><a href="http://www.sfmta.com/cms/mfleet/indxfleet.htm">http://www.sfmta.com/cms/mfleet/indxfleet.htm</a></li>
             <li><a href="http://www.streetcar.org">http://www.streetcar.org </a></li>
@@ -390,7 +413,21 @@
       </div>
       <!-- End English -->
       <div class="french">
-        <h2>NOUS</h2>
+        <h3><a href="#us">NOUS</a></h3>
+        <h3><a href="#project">PROJET</a></h3>
+        <h3><a href="#process">PROCESSUS</a></h3>
+        <h3><a href="#data">DONNEES</a></h3>
+        <h4><a href="#los">LOS</a></h4>
+        <h4><a href="#formulae">FORMULES</a></h4>
+        <h3><a href="#ambitions">AMBITIONS</a></h3>
+        <h4><a href="#happiness">INDEX DE BONHEUR</a></h4>
+        <h4><a href="#factors">FACTEURS DE FRUSTRATION</a></h4>
+        <h4><a href="#mobile">MOBILE APP</a></h4>
+        <h3><a href="#sources">SOURCES</a></h3>
+        <hr/>
+        <br/>
+        
+        <a class="brand" href="#us"><h2>NOUS</h2></a>
         <p>
           <strong>Srinivas ASHOK</strong>, concepteur, programmeur</br>
           <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
@@ -410,7 +447,7 @@
         <p>Avec la participation de Halie Kampman, Balz Mueller, et Tim Sze.</p>
         <hr/>
         
-        <h2>PROJET</h2>
+        <a class="brand" href="#project"><h2>PROJET</h2></a>
         <p>Pourquoi?</p>
         <ul>
           <li>Parce qu’on veut être heureux en transport public !</li>
@@ -420,13 +457,13 @@
         <img src="images/about/logos1.jpeg" width="596" height="130" alt="Logos1">
         <hr/>
         
-        <h2>PROCESSUS</h2>
+        <a class="brand" href="#process"><h2>PROCESSUS</h2></a>
         <p>La carte de nos rendez-vous:</p>
         <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
         <hr/>
         
-        <h2>DONNEES</h2>
-        <h3>LOS</h3>
+        <a class="brand" href="#data"><h2>DONNEES</h2></a>
+        <a class="brand" href="#los"><h3>LOS</h3></a>
         <strong>Level Of Service / Niveau de service</strong>
         <p>
           L’indice de frustration est calqué sur une échelle de niveaux de service (LOS).
@@ -447,12 +484,12 @@
             La surface de chaque cercle associé à un LOS est deux fois plus importante que celle du cercle correspondant au précédent LOS, sauf pour le LOS A dont le rayon du cercle est nul.
           </p>
           <hr/>
-          <h2>FORMULES</h2>
+          <a class="brand" href="#formulae"><h2>FORMULES</h2></a>
           <p>
             Chaque facteur de frustration est calculé numériquement puis associé à un niveau de service LOS. La frustration totale est la moyenne des niveaux de service LOS des facteurs de frustration.
             <br/>
           </p>
-          <h3>Capacité </h3>
+          <h4>Capacité</h4>
           <p>
             A l’arrêt n, pour le trip t (un trip est un véhicule assigné à un itinéraire et à un horaire) :
             <br/>
@@ -489,7 +526,7 @@
             Enfin, nous calculons la moyenne des LOS de capacité de tous les trips qui s’arrêtent à l’arrêt considéré durant l’intervalle de temps considéré (durée de 5 minutes).
           </p>
           
-          <h3>Retard</h3>
+          <h4>Retard</h4>
           <p>
             A l’arrêt n, pour le trip t (un trip est un véhicule assigné à un itinéraire et à un horaire):</br>
             <strong>Dnt = AAn – SAn</strong>
@@ -531,7 +568,7 @@
             </table>
           </p>
           
-          <h3>Vitesse</h3>
+          <h4>Vitesse</h4>
           <p>
             Entre les arrêts n et n-1 :<br/><br/>
             En théorie (horaires) :<br/>
@@ -591,13 +628,13 @@
             <p>Ensuite, nous calculons le LOS de vitesse moyen de tous les LOS de vitesse des trips qui s’arrêtent à l’arrêt considéré durant notre intervalle de temps.</p>
             
             <hr/>
-            <h2>AMBITIONS</h2>
-            <strong>INDEX BONHEUR</strong>
+            <a class="brand" name="ambitions"><h2>AMBITIONS</h2></a>
+            <a class="brand" name="happiness"><h3>INDEX BONHEUR</h3></a>
             <p>Nous voulions inverser l’index et présenter sa version positive !<br/>
               Montrer la carte négative de l’index de frustration : la carte du bonheur !
             </p>
             
-            <strong>FACTEURS DE FRUSTRATION</strong>
+            <a class="brand" name="factors"><h3>FACTEURS DE FRUSTRATION</h3></a>
             <p>Nous voulions inclure bien plus de facteurs de frustrations:</p>
             <p>
               <strong>Fréquence de l’offre</strong><br/>
@@ -699,8 +736,9 @@ Il s’agit de l’intervalle de temps entre deux trips consécutifs. C’est un
             <strong>Efficacité économique</strong>
             <p>C’est un bon facteur de frustration coté planificateur.</p>
           </p>
-          <h3>MOBILE APP</h3>
+          <hr/>
           
+          <a class="brand" name="mobile"><h3>MOBILE APP</h3></a>
           <strong>Happy travel!</strong>
 
           <p>oyage heureux !</p>
@@ -710,7 +748,7 @@ L’utilisateur définit son propre index de frustration en choisissant et en po
 Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heureux ! 
           </p>
           <hr/>
-          <h2>SOURCES</h2>
+          <a class="brand" name="sources"><h2>SOURCES</h2></a>
           <ul>
             <li><a href="http://www.sfmta.com/cms/mfleet/indxfleet.htm">http://www.sfmta.com/cms/mfleet/indxfleet.htm</a></li>
             <li><a href="http://www.streetcar.org">http://www.streetcar.org </a></li>
@@ -724,7 +762,22 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
       </div>
       <!-- End French -->
       <div class="german">
-        <h2>US</h2>
+        
+        <h3><a href="#us">MITFAHRER</a></h3>
+        <h3><a href="#project">PROJEKT</a></h3>
+        <h3><a href="#process">PROZESS</a></h3>
+        <h3><a href="#data">COMPI DATA</a></h3>
+        <h4><a href="#los">LOS</a></h4>
+        <h4><a href="#formulae">ZAUBERFORMEL</a></h4>
+        <h3><a href="#ambitions">AMBITION</a></h3>
+        <h4><a href="#happiness">GLÜCKLICHKEIT INDEX</a></h4>
+        <h4><a href="#factors">FRUST FAKTOREN</a></h4>
+        <h4><a href="#mobile">NATEL APP</a></h4>
+        <h3><a href="#sources">URSPRUNG</a></h3>
+        <hr/>
+        <br/>
+        
+        <a class="brand" name="us"><h2>MITFAHRER</h2></a>
         <p>
           <strong>Srinivas ASHOK</strong>, ideator, programmer</br>
           <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
@@ -744,7 +797,7 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
         <p>golfe händ au Halie Kampman, Balz Mueller, and Tim Sze.</p>
         <hr/>
         
-        <h2>PROJEKT: FRUSTRATION INDEX</h2>
+        <a class="brand" name="project"><h2>PROJEKT: FRUSTRATION INDEX</h2></a>
         <p>Warum?</p>
         <ul>
           <li>Als Mitfahrer möchte mir a glücklichi Fahrt.</li>
@@ -754,13 +807,13 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
         <img src="images/about/logos1.jpeg" width="596" height="130" alt="Logos1">
         <hr/>
         
-        <h2>PROZESS</h2>
+        <a class="brand" name="process"><h2>PROZESS</h2></a>
         <p>Projekt Ort uf de charte:</p>
         <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
         <hr/>
         
-        <h2>COMPI DATA</h2>
-        <h3>LOS</h3>
+        <a class="brand" name="data"><h2>COMPI DATA</h2></a>
+        <a class="brand" name="los"><h3>LOS</h3></a>
         <p>
           De Frustrations index isch basiert uf em LOS scale.
           An kombinierte frust us 3 Teil: Kapazität Verspötigkeit und Schnelligkeit. 
@@ -779,7 +832,7 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
             
           </p>
           <hr/>
-          <h2>ZAUBERFORMEL</h2>
+          <a class="brand" name="formulae"><h2>ZAUBERFORMEL</h2></a>
           <p>
             Jeder Frustfaktor ist rawly berechnet. Dann wird es mit einem LOS verbunden.<br/>
             Die allgemeine Frustration ist der Durchschnitt der LOS der Frustration Faktoren.
@@ -858,7 +911,7 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
             </table>
           </p>
           
-          <h3>Schnelligkeit   </h3>
+          <h3>Schnelligkeit</h3>
           <p>
             Zwischen den Haltestellen n und n-1:<br/><br/>
             In der Theorie :<br/>
@@ -916,7 +969,7 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
             <br/>
             
             <hr/>
-            <h2>AMBITION</h2>
+            <a class="brand" name="ambition"><h2>AMBITION</h2></a>
             <strong>GLÜCKLICHKEIT INDEX</strong>
             <p>Wir hand alles is positive gwächslet.</p>
             
@@ -1020,7 +1073,9 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
             <strong>Wirtschaftliche effizienz</strong>
             <p>Es isch au guet für de Planner de zugang zu de data vo de App zha.</p>
           </p>
-          <h3>NATEL APP</h3>
+          <hr/>
+          
+          <a class="brand" name="mobile"><h3>NATEL APP</h3></a>
           
           <strong>Glücklichi reise!</strong>
 
@@ -1030,7 +1085,7 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
           Die Natel app definiert a Traumroute welchi die persöndlich frustration reduziert.
           </p>
           <hr/>
-          <h2>URSPRUNG</h2>
+          <a class="brand" name="sources"><h2>URSPRUNG</h2></a>
           <ul>
             <li><a href="http://www.sfmta.com/cms/mfleet/indxfleet.htm">http://www.sfmta.com/cms/mfleet/indxfleet.htm</a></li>
             <li><a href="http://www.streetcar.org">http://www.streetcar.org </a></li>
