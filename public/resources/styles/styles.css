@@ -2,6 +2,8 @@ html { height: 100% }
 body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue", Arial; background: #FFFFFF; }
 #map_canvas { height: 82%; width:95%; margin-left: auto; margin-right: auto; }
 
+a { color: #000000; }
+a:hover { color: #58D3D6; }
 
 #header { height:60px; }
 
@@ -18,6 +20,10 @@ body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue", Arial
   margin:22px;
 }
 
+#header #about a {
+  color: #000000;
+}
+
 #loader {
   font-size:20px;
   text-align:center;
@@ -26,7 +32,7 @@ body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue", Arial
 }
 
 #legend {
-  width:400px;
+  width:420px;
   float:right;
 }
 
@@ -60,7 +66,7 @@ body { height: 100%; margin: 0; padding: 0; font-family: "Helvetica Neue", Arial
 }
 
 #range {
-  display:block;
+  display:none;
   font-family: "Helvetica Neue", "Yanone Kaffeesatz";
   margin-bottom:4px;
   position:relative;
@@ -117,6 +123,14 @@ div.controls { float:left; height:90px; width:250px; }
 #currentTime div.hours,
 #currentTime div.minutes,
 #currentTime div.seconds { border:solid 1px #AAAAAA; color:#111111; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+
+#footer {
+	margin-top: 4px;
+	margin-left:auto;
+	margin-right:auto;
+	width:95%;
+}
+
 
 .mapTooltip {
   background:#EEEEEE;
@@ -175,12 +189,15 @@ div.controls { float:left; height:90px; width:250px; }
 .mapTooltip .NA { background: #CCCCCC !important; color: #999999; }
 .mapTooltip .NA label { color: #999999; }
 
-
 .ui-slider { background:#CCCCCC; clear:both; display:block; }
 
 .ui-slider-handle.ui-state-default {
 	border:solid 1px #777777;
   margin-top:-2px;
+}
+
+#aboutContent {
+  margin:40px;
 }
 
 .animation {

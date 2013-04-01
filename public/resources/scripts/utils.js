@@ -200,7 +200,7 @@ google.maps.Map.prototype.addOverlay = function(lat, lon, size, color, key) {
     
     var tooltip = $("<div class='mapTooltip'>" +
       "Stop: " + circle.title + "</br>" +
-      "Frustration distribution: </br>" +
+      "Level of Service (LOS): </br>" +
       "<div class='totalLevel tile " + dotGrade[total] + "'><div class='label'>" + FACTORS[city].factors + "</div><div class='icon grade" + dotGrade[total] + "'></div><div class='grade'> LOS " + dotGrade[total] + "</div></div>" + 
       "<div class='delay tile grade " + dotGrade[delay] + "'><div class='label'>" + FACTORS[city].delay + "</div><div class='icon grade" + dotGrade[delay] + "'></div><div class='grade'> LOS " + dotGrade[delay] + "</div></div>" + 
       "<div class='capacity tile grade " + dotGrade[capacity] + "'><div class='label'>" + FACTORS[city].capacity + "</div><div class='icon grade" + dotGrade[capacity] + "'></div><div class='grade'> LOS " + dotGrade[capacity] + "</div></div>" + 
