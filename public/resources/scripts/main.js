@@ -296,7 +296,7 @@ function loadData(city) {
         chart = {};
         
         /* Not Pretty, but it seem like an effience way to reduce and sort in the same loop */
-        by_stop.top(500).forEach(function(p, i){
+        by_stop.top(700).forEach(function(p, i){
 
           var cap_grade, delay_grade, speed_grade;
 
