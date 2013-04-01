@@ -163,6 +163,7 @@ function makeVis() {
         .call(yAxis);
 
     // Add y axis label
+    /*
     svg.append('text')
         .attr('transform', 'rotate(-90)')
         .attr('y', 0 - margin.left)
@@ -170,6 +171,7 @@ function makeVis() {
         .attr('dy', '1em')
         .style('text-anchor', 'middle')
         .text('Frustration Index');
+    */
 
     makeAveragePointAtTime('06:00:00');
 
