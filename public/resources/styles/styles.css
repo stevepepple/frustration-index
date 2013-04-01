@@ -9,6 +9,7 @@ a:hover { color: #58D3D6; }
 
 #header #logo {
   background: url('../../images/logo.jpg') no-repeat 16px 10px;
+  display:block;
   width:350px;
   height:60px;
 }
@@ -73,7 +74,7 @@ a:hover { color: #58D3D6; }
   text-align:center;
 }
 
-#city { background: #FFFFFF; border:solid 1px #111111; margin-top:12px; }
+#city, #language { background: #FFFFFF; border:solid 1px #111111; margin-top:12px; }
 #city option { line-height: 30px; }
 
 #slider {
@@ -130,7 +131,6 @@ div.controls { float:left; height:90px; width:250px; }
 	margin-right:auto;
 	width:95%;
 }
-
 
 .mapTooltip {
   background:#EEEEEE;
@@ -198,6 +198,12 @@ div.controls { float:left; height:90px; width:250px; }
 
 #aboutContent {
   margin:40px;
+  font-size:14px;
+  color:#000000;
+}
+
+#aboutContent h2, #aboutContent h3 {
+  color: #000000;
 }
 
 .animation {
