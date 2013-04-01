@@ -17,7 +17,7 @@
   <script src="resources/scripts/GeoJSON.js"></script>
   <script src="resources/scripts/main.js"></script>
   <script src="resources/scripts/utils.js"></script>
-
+  <script src="resources/scripts/chart.js"></script>
 
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/overcast/jquery-ui.css" />
   <link rel="stylesheet" href="resources/styles/styles.css" />
@@ -45,7 +45,6 @@
         </div>
       </div>
     </div>
-    
 
     <div id="range">
       <div id="legend">
@@ -73,7 +72,8 @@
     <div id="map_canvas" style="width:600;"></div>
 
     <div id="footer">
-      
+      <div id="chartContainer">
+        <svg width="1049" height="250" id="svg"><g transform="translate(50,30)" id="svgg"></svg></div>
     </div>
 
     <script>
@@ -96,12 +96,14 @@
         doTranslation();
         loadRoutes(city);
         loadData(city);
+        init(city);
 			});
 			
       doTranslation();
       loadRoutes(city);    
       // TODO: sleep until I get the map callback right 
-      loadData(city) ;       
+      loadData(city);
+      init(city);
 
 		});
 

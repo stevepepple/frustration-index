@@ -126,10 +126,11 @@ div.controls { float:left; height:90px; width:250px; }
 #currentTime div.seconds { border:solid 1px #AAAAAA; color:#111111; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 #footer {
-	margin-top: 4px;
-	margin-left:auto;
-	margin-right:auto;
-	width:95%;
+  background:#FFFFFF;
+  margin-top: -100px;
+  position: absolute;
+  width: 100%;
+  z-index: 2000;
 }
 
 .mapTooltip {
@@ -204,6 +205,33 @@ div.controls { float:left; height:90px; width:250px; }
 
 #aboutContent h2, #aboutContent h3 {
   color: #000000;
+}
+
+/* Chart Styles */
+path {
+    stroke: gray;
+    stroke-width: 2;
+    fill: none;    
+}
+.overall_grade {
+    stroke-width: 4;
+}
+.cap_grade {
+    stroke: #42c1c8;
+}
+.speed_grade {
+    stroke: #ed9bc3;
+}
+.delay_grade {
+    stroke: #eae623;
+}
+.axis path, .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1; shape-rendering: crispEdges;
+}
+.tick {
+    font-weight: bold;
 }
 
 .animation {

@@ -103,6 +103,8 @@ function initialize() {
   });
   
 	loadRoutes(city); 
+  
+  //init(city);
 }    
 
 function doTranslation() {
