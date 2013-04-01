@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  
+  <link href="resources/scripts/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+  
+  <script src="resources/scripts/crossfilter.v1.js"></script>
+
+  <script src="resources/scripts/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/scripts/jquery-1.9.1.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script src="resources/scripts/jquery.ui.touch-punch.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&sensor=true&key=AIzaSyA-YiurRX6GixuExPSrQgbcOwcUWinAn54"></script>
+  <script src="resources/scripts/bootstrap/js/bootstrap.min.js"></script>
+  <script src="resources/scripts/GeoJSON.js"></script>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/overcast/jquery-ui.css" />
+  <link rel="stylesheet" href="resources/styles/styles.css" />
+ 
+</head>
+<body>
+    
+    <div id="header">
+      <div id="logo"></div>
+    </div>
+    <!-- GUI Selector -->
+    <div id="aboutContent">
+      <div class="en">
+        <h3>US</h3>
+        <p>
+          <strong>Srinivas ASHOK</strong>, ideator, programmer</br>
+          <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
+        </p>
+        <p>
+          <strong>Daphné DETHIER</strong>, ideator, formulator, graphic designer</br>
+          <a href="www.linkedin.com/pub/daphné-dethier/48/9a0/652/en">www.linkedin.com/pub/daphné-dethier/48/9a0/652/en</a>
+        </p>
+        <p>
+          <strong>Carmel DUDLEY</strong>, programmer
+          <a href="www.linkedin.com/in/carmeldudley">www.linkedin.com/in/carmeldudley</a>
+        </p>
+        <p>
+          <strong>Steve PEPPLE</strong>, ideator, programmer, designer
+          <a href="www.linkedin.com/in/stevepepple">www.linkedin.com/in/stevepepple</a>
+        </p>
+        <p>With the participation of Halie Kampman, Balz Mueller, and Tim Sze.</p>
+      
+        <h3>PROJECT</h3>
+        <p>Why?</p>
+        <ul>
+          <li>Because we want happy ride !</li>
+          <li>Because this tool can be useful for both users and planners.</li>
+          <li>Because it is a way to compare happiness across the three cities.</li>
+        </ul>
+      
+        <h3>PROCESS</h3>
+        <p>Our project locations map</p>
+        <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
+        
+        <h3>DATA</h3>
+        <h3>Level Of Service</h3>
+        <p>
+          The frustration index is based on a LOS scale.<br/>
+          The overall frustration is the combination of three frustration factors: capacity, delay and speed. Each of these factors is also associated with a LOS after raw computation.
+        </p>
+        <img src="images/about/grading-system.jpg" width="386" height="370" alt="Grading System">
+        <p>
+          To correlate the LOS with numerical values, we have distributed the LOS like this:
+          </br>
+          <img src="images/about/losgrade.jpeg" width="585" height="117" alt="Losgrade">
+          <p>
+            Where each LOS value is twice bigger as the previous one, except for A which is 0.</br>
+            The area of each circle associated with a LOS is twice bigger as the previous LOS one, except for LOS A which has no circle.
+          </p>
+          <h3>FORMULAE</h3>
+          <p>
+            Each frustration factor is rawly calculated and then associated with a level of service LOS.<br/>
+            The overall frustration is the average of the LOS of the frustration factors.
+          </p>
+          <h3>Capacity</h3>
+          <p>
+            At the stop n, for the trip t :<br/>
+
+            Pnt=∑(Bx-Ex) 		
+            for x starting at 1 until n (where 1 is the first stop of the trip)
+
+            Where ∑ is the sum operation<br/>
+            <ul>
+              <li>Pnt is the number of passengers at the stop n on the trip t</li>
+              <li>Bx is the number of passengers boarding at the stop x</li>
+              <li>Ex is the number of passengers exitinging at the stop x</li>
+            </ul>
+          </p>
+          <p>
+            The Levels Of Service are defined as follows.
+          </p>
+          <table>
+            <thead>
+              <th>LOS </th>
+              <th>Load Factor (p/seats)</th>
+              <th>Comments</th>
+            </thead>
+            <tbody>
+              <tr><td>A</td><td>0.00-0.50</td><td>No passenger need sit next to another </td></tr>
+              <tr><td>B</td><td>0.51-0.75</td><td>Passengers can choose where to sit</td></tr>
+              <tr><td>C</td><td>0.76-1.00 </td><td>All passengers can sit</td></tr>
+              <tr><td>D</td><td>1.01-1.25</td><td>Comfortable standee load for design</td></tr>
+              <tr><td>E</td><td>1.26-1.50</td><td>Maximum schedule load</td></tr>
+              <tr><td>F </td><td>>1.50</td><td>Crush load</td></tr>
+            </tbody>
+          </table>
+          <p>
+            We have searched the number of seats for each vehicle type for each city in order to estimate the load factor, which is associated with a LOS, which represents a level of frustration.
+          </p>
+          <p>
+            Then, we calculate the average capacity LOS of all the capacity LOS of the trips stopping at the stop considered during our time window.
+          </p>
+          
+          <h3>Delay</h3>
+          <p>
+            At the stop n, for the trip t: </br>
+            Dnt = AAn – SAn
+            </br>
+            Where: </br>
+            <ul>
+              <li>AAn is the actual arrival at the stop n</li>
+              <li>SAn is the scheduled arrival at the stop n</li>
+            </ul>
+          </p>
+          <p>
+            To calculate the LOS, we take the maximum and minimum of a particular value for delay for the considered route. Then we bucket the data into separate grades based on how close the current value is to the minimum value. </br>
+            <strong>
+              dnt = ( Dnt- d) / (D - d)
+            </strong><br/>
+            Where:
+            <ul>
+              <li>Dnt is the delay of trip t at the stop n</li>
+              <li>d is the minimum delay</li>
+              <li>D is the maximum delay </li>
+            </ul>
+          </p>
+          <p>
+            The Levels Of Service are defined as follows.<br/>
+            <table>
+              <thead>
+                <th>LOS </th>
+                <th>dnt</th>
+                <th>Comments</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>0 – 0.5</td><td>Vehicle on time</td></tr>
+                <tr><td>B</td><td>0.6 – 0.15</td><td>Tolerable delay</td></tr>
+                <tr><td>C</td><td>0.16 – 0.25</td><td>Unreliable system</td></tr>
+                <tr><td>D</td><td>0.26 – 0.35</td><td>Frustrating</td></tr>
+                <tr><td>E</td><td>0.36 – 0.65</td><td>Very frustrating</td></tr>
+                <tr><td>F </td><td>>0.66 - 1</td><td>Intolerable delay</td></tr>
+              </tbody>
+            </table>
+          </p>
+          <p>Then, we calculate the average delay LOS of all the delay LOS of the trips stopping at the stop considered during our time window.</p>
+          </br>
+          
+          <h3>Speed</h3>
+          <p>
+            Between the stops n and n-1 :</br>
+            In theory (scheduled time):<br/>
+            
+            <strong>Vn,n-1  = Dn,n-1 / STn,n-1 </strong><br/>
+            <br/>
+            In reality (actual time):<br/>
+            <strong>Vn,n-1  = Dn,n-1 / ATn,n-1</strong>
+            <br/>
+            With:
+            <ul>
+              <li>
+                STn,n-1 is the scheduled time between the stops n and n-1 
+                  <ul>
+                    <li><strong>STn,n-1 = SAn – SAn-1</strong></li>
+                    <li>SAn is the scheduled arrival at the stop n</li>
+                    <li>SAn-1 is the scheduled arrival at the stop n-1  </li>
+                  </ul>
+              </li>
+              <li>
+                ATn,n-1 is the actual time between the stops n and n-1 
+                <ul>
+                  <li><strong>ATn,n-1 = AAn – AAn-1</strong></li>
+                  <li>AAn is the actual arrival at the stop n</li>
+                  <li>AAn-1 is the actual arrival at the stop n-1 </li>
+                </ul>
+              </li>
+              <li>
+                Dn,n-1 is the distance as the crow flies between the stop n and n-1                        <ul>
+                  <li><strong>Dn,n-1 = √ ( (Ln-1-Ln)2 + (ln-1-ln)2  )</strong></li>
+                  <li>Ln-1 is the longitude of the stop n-1</li>
+                  <li>Ln is the longitude of the stop n</li>
+                  <li>ln-1 is the latitude of the stop n-1</li>
+                  <li>ln is the latitude of the stop n</li>
+                </ul>
+              </li>
+            </ul>
+            <br/>
+            The Levels Of Service are defined as follows.<br/>
+            <table>
+              <thead>
+                <th>LOS </th>
+                <th>Vn, n-1</th>
+                <th>Comments </th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>	0 – 0.5</td><td>Vehicle moves quickly</td></tr>
+                <tr><td>B</td><td>0.6 – 0.15</td><td>Tolerable slower pace</td></tr>
+                <tr><td>C</td><td>0.16 – 0.25</td><td>Too slow</td></tr>
+                <tr><td>D</td><td>0.26 – 0.35</td><td>Frustrating</td></tr>
+                <tr><td>E</td><td>0.36 – 0.65</td><td>Very frustrating</td></tr>
+                <tr><td>F </td><td>>0.66 - 1</td><td>Almost at standstill</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            <p>Then, we calculate the average delay LOS of all the delay LOS of the trips stopping at the stop considered during our time window.</p>
+            
+            <h2>AMBITIONS</h2>
+            <h3>HAPPINESS INDEX</h3>
+            <p>We wanted to turn it positive too!</p>
+            
+            <h3>FRUSTRATION FACTORS</h3>
+            <p>We wanted to add much more frustration factors:</p>
+            <p>
+              <strong>Headway</strong><br/>
+              It is the time between two consecutive trips on a same route. It is a measure of availability. 
+            </p>
+            <p>
+              In theory:<br/>
+              <strong>= h = headway</strong><br/>
+              In reality:<br/>
+              <strong>= AAb – AAb-1  </strong><br/>
+              <em>where b is the bus following the bus b-1</em>
+              
+              
+            </p>
+            
+            
+            
+            
+            
+            
+            
+          </p>
+          
+          
+        
+      </div>
+      
+
+      
+      
+      
+      
+      
+    </div>
+    
+</body>
+</html>
