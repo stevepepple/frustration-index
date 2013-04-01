@@ -76,7 +76,7 @@
         <p>With the participation of Halie Kampman, Balz Mueller, and Tim Sze.</p>
         <hr/>
         
-        <h2>PROJECT</h2>
+        <h2>PROJECT: FRUSTRATION INDEX</h2>
         <p>Why?</p>
         <ul>
           <li>Because we want a happy ride!</li>
@@ -722,8 +722,328 @@ Ensuite, l’application définit l’itinéraire rêvé pour un utilisateur heu
             >	Kittelson & Associates, National Research Council (U.S.), Transit Cooperative Research Program, United States, & Transit  Development Corporation. 2003. Transit capacity and quality of service manual. Washington, D.C: Transportation Research Board.</li>
           </ul>
       </div>
-      
-      
+      <!-- End French -->
+      <div class="german">
+        <h2>US</h2>
+        <p>
+          <strong>Srinivas ASHOK</strong>, ideator, programmer</br>
+          <a href="www.linkedin.com/pub/srinivas-ashok/33/bba/a45">www.linkedin.com/pub/srinivas-ashok/33/bba/a45</a>
+        </p>
+        <p>
+          <strong>Daphné DETHIER</strong>, ideator, formulator, graphic designer</br>
+          <a href="www.linkedin.com/pub/daphné-dethier/48/9a0/652/en">www.linkedin.com/pub/daphné-dethier/48/9a0/652/en</a>
+        </p>
+        <p>
+          <strong>Carmel DUDLEY</strong>, programmer
+          <a href="www.linkedin.com/in/carmeldudley">www.linkedin.com/in/carmeldudley</a>
+        </p>
+        <p>
+          <strong>Steve PEPPLE</strong>, ideator, programmer, designer
+          <a href="www.linkedin.com/in/stevepepple">www.linkedin.com/in/stevepepple</a>
+        </p>
+        <p>golfe händ au Halie Kampman, Balz Mueller, and Tim Sze.</p>
+        <hr/>
+        
+        <h2>PROJEKT: FRUSTRATION INDEX</h2>
+        <p>Warum?</p>
+        <ul>
+          <li>Als Mitfahrer möchte mir a glücklichi Fahrt.</li>
+          <li>Als Mitfahrer möchte mir das gliche Hilfsmittel bruche, das au the Planner brucht.</li>
+          <li>Als Mitfahrer vergliche and verbinde mir 3 glücklichi Städte.</li>
+        </ul>
+        <img src="images/about/logos1.jpeg" width="596" height="130" alt="Logos1">
+        <hr/>
+        
+        <h2>PROZESS</h2>
+        <p>Projekt Ort uf de charte:</p>
+        <img src="images/about/map.jpeg" width="525" height="449" alt="Map">
+        <hr/>
+        
+        <h2>COMPI DATA</h2>
+        <h3>LOS</h3>
+        <p>
+          De Frustrations index isch basiert uf em LOS scale.
+          An kombinierte frust us 3 Teil: Kapazität Verspötigkeit und Schnelligkeit. 
+          Alli Faktore werded mit roher LOS Compi Data berechnet und in verbindung gestzt.
+<br/>
+          <img src="images/about/grading-system.jpg" width="386" height="370" alt="Grading System">
+        </p>
+        <p>
+          Um die LOS mit numerischen Werten korrelieren, haben wir die LOS wie folgt verteilt:</br></br>
+          <img src="images/about/losgrade.jpeg" width="585" height="117" alt="Losgrade">
+          <p>
+            Wobei jeder LOS Wert ist zweimal größer als die vorherige.<br/>
+            Außer LOS A, welcher 0 ist.
+            Die Fläche jeder Kreis mit einem LOS zugeordnet ist zweimal größer als die vorherige LOS ein.
+            Außer LOS A, der keinen Kreis hat.
+            
+          </p>
+          <hr/>
+          <h2>ZAUBERFORMEL</h2>
+          <p>
+            Jeder Frustfaktor ist rawly berechnet. Dann wird es mit einem LOS verbunden.<br/>
+            Die allgemeine Frustration ist der Durchschnitt der LOS der Frustration Faktoren.
+          </p>
+          <h3>Kapazität</h3>
+          <p>
+            An der Haltestelle n, für das Trip t (ein Trip ist ein Fahrzeug auf einer bestimmten Route und Zeitplan zugewiesen) :<br/>
+
+            Pnt=∑(Bx-Ex) 		
+            für x beginnend bei 1 bis n (wobei 1 die erste Station der Trip ist)
+
+            Wo ∑ ist die Summe Betrieb<br/>
+            <ul>
+              <li>Pnt ist die Anzahl der Passagiere an der Haltestelle n auf der Trip t</li>
+              <li>Bx ist die Anzahl der beförderten Passagiere an der Haltestelle x</li>
+              <li>Ex ist die Anzahl der eingestiegen Passagiere an der Haltestelle x</li>
+            </ul>
+          </p>
+          <p>
+            Die LOS sind wie folgt definiert.
+          </p>
+          <table class="table">
+            <thead>
+              <th>LOS </th>
+              <th>Lastfaktor (Passagiere/Sitzplätze)</th>
+              <th>Kommentar</th>
+            </thead>
+            <tbody>
+              <tr><td>A</td><td>0.00-0.50</td><td>Kein Passagier braucht sitzen neben anderen </td></tr>
+              <tr><td>B</td><td>0.51-0.75</td><td>Passagiere können wählen, wo Sie sitzen</td></tr>
+              <tr><td>C</td><td>0.76-1.00 </td><td>Alle Passagiere sitzen können</td></tr>
+              <tr><td>D</td><td>1.01-1.25</td><td>Komfortable standee Last</td></tr>
+              <tr><td>E</td><td>1.26-1.50</td><td>Maximale Zeitplan Last</td></tr>
+              <tr><td>F </td><td>>1.50</td><td>Crush Last</td></tr>
+            </tbody>
+          </table>
+          
+          <h3>Verspötigkeit</h3>
+          <p>
+            An der Haltestelle n, für das Trip t (ein Trip ist ein Fahrzeug auf einer bestimmten Route und Zeitplan zugewiesen): </br>
+            <strong>Dnt = AAn – SAn</strong>
+            <br/><br/>
+            Wo: </br>
+            <ul>
+              <li>AAn ist die tatsächliche Ankunftszeit an der Haltestelle n</li>
+              <li>SAn ist die geplante Ankunftszeit an der Haltestelle n</li>
+            </ul>
+          </p>
+          <p>
+            <strong>
+              dnt = ( Dnt- d) / (D - d)
+            </strong><br/>
+            Wo:
+            <ul>
+              <li>Dnt ist die Verspötigkeit der Trip t an der Haltestelle n</li>
+              <li>d die minimale Verspötigkeit</li>
+              <li>D die maximale Verspötigkeit</li>
+            </ul>
+          </p>
+          <p>
+            Die LOS sind wie folgt definiert.<br/>
+            <table class="table">
+              <thead>
+                <th>LOS </th>
+                <th>dnt</th>
+                <th>Kommentare</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>0 – 0.5</td><td>Vehicle on time</td></tr>
+                <tr><td>B</td><td>0.6 – 0.15</td><td>Tolerable delay</td></tr>
+                <tr><td>C</td><td>0.16 – 0.25</td><td>Unreliable system</td></tr>
+                <tr><td>D</td><td>0.26 – 0.35</td><td>Frustrating</td></tr>
+                <tr><td>E</td><td>0.36 – 0.65</td><td>Very frustrating</td></tr>
+                <tr><td>F </td><td>>0.66 - 1</td><td>Intolerable delay</td></tr>
+              </tbody>
+            </table>
+          </p>
+          
+          <h3>Schnelligkeit   </h3>
+          <p>
+            Zwischen den Haltestellen n und n-1:<br/><br/>
+            In der Theorie :<br/>
+            <strong>Vn,n-1  = Dn,n-1 / STn,n-1 </strong><br/>
+            <br/>
+            In Wirklichkeit :<br/>
+            <strong>Vn,n-1  = Dn,n-1 / ATn,n-1</strong>
+            <br/>
+            Mit:
+            <ul>
+              <li>
+                STn,n-1 ist die geplante Zeit zwischen den Haltstellen n und n-1  
+                  <ul>
+                    <li><strong>STn,n-1 = SAn – SAn-1</strong></li>
+                    <li>SAn ist die geplante Ankunftszeit an der Haltestelle n</li>
+                    <li>SAn-1 ist die geplante Ankunftszeit an der Haltestelle n-1</li>
+                  </ul>
+              </li>
+              <li>
+                ATn,n-1 ist die aktuelle Zeit zwischen den Haltstellen n und n-1
+                <ul>
+                  <li><strong>ATn,n-1 = AAn – AAn-1</strong></li>
+                  <li>AAn ist die tatsächliche Ankunftszeit an der Haltestelle n</li>
+                  <li>AAn-1 ist die tatsächliche Ankunftszeit an der Haltestelle n-1</li>
+                </ul>
+              </li>
+              <li>
+                Dn,n-1 is the distance as the crow flies between the stop n and n-1
+                <ul>
+                  <li><strong>Dn,n-1 = √ ( (Ln-1-Ln)2 + (ln-1-ln)2  )</strong></li>
+                  <li>Ln-1 ist die Länge von der Haltestelle n-1</li>
+                  <li>Ln ist die Länge von der Haltestelle n</li>
+                  <li>ln-1 ist die Breite der Haltestelle n-1	</li>
+                  <li>ln ist die Breite der Haltestelle n</li>
+                </ul>
+              </li>
+            </ul>
+            <br/>
+            Die LOS sind wie folgt definiert.<br/>
+            <table class="table">
+              <thead>
+                <th>LOS </th>
+                <th>Vn, n-1</th>
+                <th>Kommentare</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>0 – 0.5</td><td>Fahrzeug bewegt sich schnell</td></tr>
+                <tr><td>B</td><td>0.6 – 0.15</td><td>Tolerable langsamer</td></tr>
+                <tr><td>C</td><td>0.16 – 0.25</td><td>zu langsam</td></tr>
+                <tr><td>D</td><td>0.26 – 0.35</td><td>frustrierend</td></tr>
+                <tr><td>E</td><td>0.36 – 0.65</td><td>sehr frustrierend</td></tr>
+                <tr><td>F </td><td>>0.66 - 1</td><td>Fast im Stillstand</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            
+            <hr/>
+            <h2>AMBITION</h2>
+            <strong>GLÜCKLICHKEIT INDEX</strong>
+            <p>Wir hand alles is positive gwächslet.</p>
+            
+            <strong>FRUST FAKTOREN</strong>
+            <p>Wir händ no wölle mehr frust Faktoren dazu nä.</p>
+            <p>
+              <strong>Progression / headway</strong><br/>
+              Er ist ein Maß an Verfügbarkeit.
+            </p>
+            <p>
+              In der Theorie:<br/>
+              <strong>= h = headway</strong><br/>
+              In Wirklichkeit:<br/>
+              <strong>= AAb – AAb-1  </strong><br/>
+              <em>wo t ist der Trip folgenden der Trip t-1</em>
+            </p>
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>AAb – AAb-1 (min)</th>
+                <th>veh/h</th>
+                <th>Kommentare</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>&lt;10</td><td>6</td><td>Passagiere müssen nicht Zeitpläne </td></tr>
+                <tr><td>B</td><td>10-14</td><td>>5-6</td><td>Häufige Service, beraten Passagiere Zeitpläne</td></tr>
+                <tr><td>C</td><td>15-20</td><td>3-4</td><td>Maximale wünschenswert Zeit zu warten, wenn Bus / Zug verpasst</td></tr>
+                <tr><td>D</td><td>21-30</td><td>2</td><td>Service unattraktiv Wahl Fahrer</td></tr>
+                <tr><td>E</td><td>31-60</td><td>1</td><td>Service zur Verfügung während der Stunde</td></tr>
+                <tr><td>F </td><td>&gt;60</td><td>&lt;1</td><td>Service unattraktiv für alle Fahrer</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            <strong>Warte Zit</strong>
+            <p>Es ist eine Alternative zu der Progression.</p>
+            <p>
+              In der Theorie:<br/>
+              <strong>= h/2 </strong><br/>
+              n Wirklichkeit: <br/>
+              <strong>= = (AAb – AAb-1)/2 </strong><br/>
+              <em>wo t ist der Trip folgenden der Trip t-1</em>
+              
+              <table class="table">
+                <thead>
+                  <th>LOS</th>
+                  <th>(AAb – AAb-1)/2 (min)</th>
+                </thead>
+                <tbody>
+                  <tr><td>A</td><td>5</td></tr>
+                  <tr><td>B</td><td>5-10</td></tr>
+                  <tr><td>C</td><td>10-15</td></tr>
+                  <tr><td>D</td><td>15-20</td></tr>
+                  <tr><td>E</td><td>20-30</td></tr>
+                  <tr><td>F</td><td>&gt;30</td></tr>
+                </tbody>
+              </table>
+            </p>
+            <strong>Oeffnigs zit</strong>
+            <p>Ich ist ein anderer guter Indikator für die Verfügbarkeit.</p>
+            <p>= Abfahrt * des letzten Laufs - Abfahrt * des ersten Laufs + 1</p>
+
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>Hours of Service</th>
+                <th>Kommentare</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>19-24</td><td>Nacht Dienstleistung</td></tr>
+                <tr><td>B</td><td>17-18</td><td>Am späten Abend Dienstleistung </td></tr>
+                <tr><td>C</td><td>14-16</td><td>Am frühen Abend Dienstleistung </td></tr>
+                <tr><td>D</td><td>12-13</td><td>Daytime Dienstleistung </td></tr>
+                <tr><td>E</td><td>4-11</td><td>Peak-Stunden-Dienstleistung oder nur begrenzte Mittag-Dienstleistung</td></tr>
+                <tr><td>F</td><td>0-3</td><td>Sehr begrenzte oder kein Dienstleistung</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            
+            <strong>onstanti Schnelligkeit</strong>
+            <p>Dies ist ein wichtiger Wohlfühlfaktor. Daher ist es auch ein wichtiger Frustfaktor.</p>
+            <p>Die Standardabweichung der durchschnittlichen Schnelligkeits zwischen zwei Haltestellen Schätzungen, wenn ein Trip unterliegt hohen Variation in ihrer Schnelligkeit.</p>
+            <p>Andere Indikatoren wie das Verhältnis Anzahl der Haltestellen / Länge der Route, kann helfen, herauszufinden die Schnelligkeit Variation.</p>
+
+            <table class="table">
+              <thead>
+                <th>LOS</th>
+                <th>Reise Zit differänz (min)</th>
+                <th>Kommentare</th>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>≤0</td><td>Schneller durch den Transit als mit dem Auto</td></tr>
+                <tr><td>B</td><td>1-15</td><td>Über so schnell durch den Transit wie mit dem Auto </td></tr>
+                <tr><td>C</td><td>16-30</td><td>Tolerable für Wahl Fahrer </td></tr>
+                <tr><td>D</td><td>31-45</td><td>Hin-und Rückflug mindestens eine Stunde länger durch den Transit </td></tr>
+                <tr><td>E</td><td>46-60</td><td>Langwierige für alle Fahrer, kann es am besten möglich, in kleinen Städten</td></tr>
+                <tr><td>F</td><td>&gt;60</td><td>Inakzeptabel für meisten Fahrer</td></tr>
+              </tbody>
+            </table>
+            <br/>
+            
+            <strong>Wirtschaftliche effizienz</strong>
+            <p>Es isch au guet für de Planner de zugang zu de data vo de App zha.</p>
+          </p>
+          <h3>NATEL APP</h3>
+          
+          <strong>Glücklichi reise!</strong>
+
+          <p>A happy trip planner!</p>
+          <p>Es definiert de persöndlichi Wäg und reduziert de frust vo de Mitfahrer.</p>
+          <p>De Mitfahrer indexiert sin eigene frust index in dem er entscheide was wichtig isch für sini Reis (Kapazität, Verspötigkeit, Schnelligkeit, Wartezeit, ...).<br/>
+          Die Natel app definiert a Traumroute welchi die persöndlich frustration reduziert.
+          </p>
+          <hr/>
+          <h2>URSPRUNG</h2>
+          <ul>
+            <li><a href="http://www.sfmta.com/cms/mfleet/indxfleet.htm">http://www.sfmta.com/cms/mfleet/indxfleet.htm</a></li>
+            <li><a href="http://www.streetcar.org">http://www.streetcar.org </a></li>
+            <li><a href="http://www.tpg.ch/les-vehicules">http://www.tpg.ch/les-vehicules</a></li>
+            <li><a href="http://www.stadt-zuerich.ch/content/vbz/de/index/die_vbz/fahrzeuge/unsere_fahrzeuge.html">http://www.stadt-zuerich.ch/content/vbz/de/index/die_vbz/fahrzeuge/unsere_fahrzeuge.html</a></li>
+            <li><a href="http://www.vtpi.org/tdm/">http://www.vtpi.org/tdm/</a></li>
+            <li><a href="http://www.apta.com/resources/statistics/Documents/FactBook/APTA_2011_Fact_Book.pdf http://www.fhwa.dot.gov/policy/2010cpr/chap4.htm#9">http://www.apta.com/resources/statistics/Documents/FactBook/APTA_2011_Fact_Book.pdf http://www.fhwa.dot.gov/policy/2010cpr/chap4.htm#9</a></li>
+            <li><a href="http://www.trb.org/Main/Blurbs/153590.aspx">http://www.trb.org/Main/Blurbs/153590.aspx</a><br/>
+            >	Kittelson & Associates, National Research Council (U.S.), Transit Cooperative Research Program, United States, & Transit  Development Corporation. 2003. Transit capacity and quality of service manual. Washington, D.C: Transportation Research Board.</li>
+            
+          </ul>
+          
+      </div>
     </div>
     
 </body>
