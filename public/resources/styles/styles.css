@@ -50,6 +50,12 @@ a:hover { color: #58D3D6; }
   background: url("../../images/delay.jpg") no-repeat scroll 10px 0 transparent;
 }
 
+#legend .delay.disabled {
+  color:#999999;
+  background: url("../../images/delay-disabled.jpg") no-repeat scroll 10px 0 transparent;
+}
+
+
 #legend .capacity {
   background: url('../../images/capacity.jpg') no-repeat;
 }

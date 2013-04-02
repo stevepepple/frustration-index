@@ -11,6 +11,18 @@ FACTORS = {
   zurich : { "factors" : "Faktors", "capacity" : "Kapazität", "delay" : "Spätigkeit", "speed" : "Schnelligkeit" }
 }
 
+DATE = {
+  sf : "Monday, October 1st, 2012",
+  geneva: "Lundi, 1er octobre, 2012",
+  zurich : "Montag, der 1. Oktober, 2012"
+}
+
+ABOUT = {
+  sf : "* about",
+  geneva: "*à propos",
+  zurich : "*über üs"
+}
+
 pink = "#E07C94";
 orange = "#E48E3B";
 green = "#D0E7A2";
@@ -112,6 +124,14 @@ function doTranslation() {
   $(".factor.delay").text(FACTORS[city].delay.toTitleCase())
   $(".factor.capacity").text(FACTORS[city].capacity.toTitleCase())
   $(".factor.speed").text(FACTORS[city].speed.toTitleCase())
+  $("#about a").text(ABOUT[city])
+  $("#day").text(DATE[city])
+  
+  if (city == "zurich") {
+    $("#day").css("width", "186px");
+    $("#legend .factor").css({"padding-left" : "64px;", "width" : "79px"})
+    $(".factor.delay").addClass("disabled")
+  }
 
 }
     
